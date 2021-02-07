@@ -1,197 +1,296 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Invoice #{{ $order->invoice }}</title>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Invoice #{{ $order->invoice }}</title>
+        <style>
+            @font-face {
+                font-family: 'Source Sans Pro', sans-serif;
+                src: url(https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap);
+            }
 
-    <style>
-    .invoice-box {
-        max-width: 800px;
-        margin: auto;
-        padding: 30px;
-        border: 1px solid #eee;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-        font-size: 16px;
-        line-height: 24px;
-        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-        color: #555;
-    }
+            .clearfix:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
 
-    .invoice-box table {
-        width: 100%;
-        line-height: normal; /* inherit */
-        text-align: left;
-    }
+            a {
+                color: #ffb19b;
+                text-decoration: none;
+            }
 
-    .invoice-box table td {
-        padding: 5px;
-        vertical-align: top;
-    }
+            body {
+                position: relative;
+                margin: 0 auto;
+                color: #555555;
+                background: #FFFFFF;
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                font-family: 'Source Sans Pro', sans-serif;
+            }
 
-    .invoice-box table tr td:nth-child(2) {
-        text-align: right;
-    }
+            header {
+                padding: 10px 0;
+                margin-bottom: 20px;
+                border-bottom: 1px solid #AAAAAA;
+            }
 
-    .invoice-box table tr.top table td {
-        padding-bottom: 20px;
-    }
+            #logo {
+                float: left;
+                margin-top: 8px;
+            }
 
-    .invoice-box table tr.top table td.title {
-        font-size: 45px;
-        line-height: 45px;
-        color: #333;
-    }
+            #logo img {
+                height: 70px;
+            }
 
-    .invoice-box table tr.information table td {
-        padding-bottom: 40px;
-    }
+            #company {
+                width: 100%;
+                float: right;
+                text-align: right;
+            }
 
-    .invoice-box table tr.heading td {
-        background: #eee;
-        border-bottom: 1px solid #ddd;
-        font-weight: bold;
-    }
 
-    .invoice-box table tr.details td {
-        padding-bottom: 20px;
-    }
+            #details {
+                margin-bottom: 50px;
+            }
 
-    .invoice-box table tr.item td{
-        border-bottom: 1px solid #eee;
-    }
+            #client {
+                padding-left: 6px;
+                border-left: 6px solid #ffb19b;
+                float: left;
+            }
 
-    .invoice-box table tr.item.last td {
-        border-bottom: none;
-    }
+            #client .to {
+                color: #777777;
+            }
 
-    .invoice-box table tr.total td:nth-child(2) {
-        border-top: 2px solid #eee;
-        font-weight: bold;
-    }
+            h2.name {
+                font-size: 1.4em;
+                font-weight: normal;
+                margin: 0;
+                color: #f27272;
+            }
 
-    @media only screen and (max-width: 600px) {
-        .invoice-box table tr.top table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
+            #invoice {
+                width: 100%;
+                float: right;
+                text-align: right;
+            }
 
-        .invoice-box table tr.information table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-    }
+            #invoice h1 {
+                color: #ffb19b;
+                font-size: 2.4em;
+                line-height: 1em;
+                font-weight: normal;
+                margin: 0  0 10px 0;
+            }
 
-    /** RTL **/
-    .rtl {
-        direction: rtl;
-        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-    }
+            #invoice .date {
+                font-size: 1.1em;
+                color: #777777;
+            }
 
-    .rtl table {
-        text-align: right;
-    }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                border-spacing: 0;
+                margin-bottom: 20px;
+            }
 
-    .rtl table tr td:nth-child(2) {
-        text-align: left;
-    }
-    </style>
-</head>
+            table th,
+            table td {
+                padding: 20px;
+                background: #EEEEEE;
+                text-align: center;
+                border-bottom: 1px solid #FFFFFF;
+            }
 
-<body>
-    <div class="invoice-box">
-        <table cellpadding="0" cellspacing="0">
-            <tr class="top">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td class="title">
-                                <img src="https://daengweb.id/front/dw-theme/images/logo-head.png" width="150px">
-                            </td>
+            table th {
+                white-space: nowrap;
+                font-weight: normal;
+            }
 
-                            <td>
-                                Invoice : <strong>#{{ $order->invoice }}</strong><br>
-                                {{ $order->created_at }}<br>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+            table td {
+                text-align: right;
+            }
 
-            <tr class="information">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                <strong>PENERIMA</strong><br>
-                                {{ $order->customer_name }}<br>
-                                {{ $order->customer_phone }}<br>
-                                {{ $order->customer_address }}<br>
-                                {{ $order->district->name }}, {{ $order->district->city->name }} {{ $order->postal_code }}<br>
-                                {{ $order->district->city->province->name }}
-                            </td>
+            table td h3{
+                color: #f27272;
+                font-size: 1.2em;
+                font-weight: normal;
+                margin: 0 0 0.2em 0;
+            }
 
-                            <td>
-                                <strong>PENGIRIM</strong><br>
-                                Daengweb<br>
-                                085343966997<br>
-                                Jl Sultan Hasanuddin<br>
-                                Somba Opu, Kab Gowa<br>
-                                Sulawesi Selatan
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+            table .no {
+                color: #FFFFFF;
+                font-size: 1.6em;
+                background: #f27272;
+            }
 
-            <tr class="heading">
-                <td>Produk</td>
-                <td>Subtotal</td>
-            </tr>
+            table .desc {
+                text-align: left;
+            }
 
-            @foreach ($order->details as $row)
-            <tr class="item">
-                <td>
-                    {{ $row->product->name }}<br>
-                    <strong>Harga</strong>: Rp {{ number_format($row->price) }} x {{ $row->qty }}
-                </td>
-                <td>Rp {{ number_format($row->price * $row->qty) }}</td>
-            </tr>
-            @endforeach
+            table .unit {
+                background: #DDDDDD;
+            }
 
-            <tr class="total">
-                <td></td>
-                <td>
-                   Subtotal: Rp {{ number_format($order->subtotal) }}
-                </td>
-            </tr>
+            table .qty {
+            }
 
-            @if ($order->payment)
-            <tr class="total">
-                <td></td>
-                <td>
-                   Pembayaran: Rp -{{ number_format($order->payment->amount) }}
-                </td>
-            </tr>
+            table .total {
+                background: #f27272;
+                color: #FFFFFF;
+            }
+
+            table td.unit,
+            table td.qty,
+            table td.total {
+                font-size: 1.2em;
+            }
+
+            table tbody tr:last-child td {
+                border: none;
+            }
+
+            table tfoot td {
+                padding: 10px 20px;
+                background: #FFFFFF;
+                border-bottom: none;
+                font-size: 1.2em;
+                white-space: nowrap;
+                border-top: 1px solid #AAAAAA;
+            }
+
+            table tfoot tr:first-child td {
+                border-top: none;
+            }
+
+            table tfoot tr:last-child td {
+                color: #f27272;
+                font-size: 1.4em;
+                border-top: 1px solid #f27272;
+            }
+
+            table tfoot tr td:first-child {
+                border: none;
+            }
+
+            #thanks{
+                font-size: 2em;
+                margin-bottom: 50px;
+            }
+
+            #notices{
+                padding-left: 6px;
+                border-left: 6px solid #ffb19b;
+            }
+
+            #notices .notice {
+                font-size: 1.2em;
+            }
+
+            footer {
+                color: #777777;
+                width: 100%;
+                height: 30px;
+                position: absolute;
+                bottom: 0;
+                border-top: 1px solid #AAAAAA;
+                padding: 8px 0;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="clearfix">
+        <div id="logo">
+            <img src="https://lh3.googleusercontent.com/d/1PVOFE-UJYo_lp2_YOIlqpVyba5XD9n94?authuser=0">
+        </div>
+        <div id="company">
+            <h2 class="name">LS Astari</h2>
+            <div>Blok MekarMulya, Rt/Rw 01/01</div>
+            <div>Ds Tenjolayar, Kec Cigasong</div>
+            <div>Kab Majalengka, Prov Jawa barat</div>
+            <div>(0233) 8285547</div>
+            {{-- <div><a href="mailto:company@example.com">company@example.com</a></div> --}}
+        </div>
+        </div>
+        </header>
+        <main>
+        <div id="details" class="clearfix">
+            <div id="client">
+            <div class="to">PENERIMA:</div>
+            <h2 class="name">{{ $order->customer_name }}</h2>
+            <div class="address">{{ $order->customer_address }}</div>
+            <div class="address">
+                {{ $order->district->name }},
+                {{ $order->district->city->name }} {{ $order->postal_code }},
+                {{ $order->district->city->province->name }}
+            </div>
+            <div class="email"><a href="#">{{ $order->customer_phone }}</a></div>
+            </div>
+            <div id="invoice">
+            <h1>{{ $order->invoice }}</h1>
+            <div class="date">Tanggal: {{date('M d, Y', strtotime($order->created_at))}}</div>
+            </div>
+        </div>
+        <table cellspacing="0" cellpadding="0">
+            <thead>
             <tr>
-                <td><strong>Detail Pembayaran</strong></td>
-                <td></td>
+                <th class="no">#</th>
+                <th class="desc">NAMA PRODUK</th>
+                <th class="unit">HARGA</th>
+                <th class="qty">QUANTITY</th>
+                <th class="total">TOTAL</th>
             </tr>
-            <tr>
-                <td>Pengirim: {{ $order->payment->name }}</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Transfer ke: {{ $order->payment->transfer_to }}</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Tanggal: {{ $order->payment->transfer_date  }}</td>
-                <td></td>
-            </tr>
-            @endif
+            </thead>
+            <tbody>
+                @foreach ($order->details as $index => $row)
+                <tr>
+                    <td class="no">{{ $index +1 }}</td>
+                    <td class="desc">{{ $row->product->name }}</td>
+                    <td class="unit">Rp.{{ number_format($row->price) }}</td>
+                    <td class="qty">{{ $row->qty }}</td>
+                    <td class="total">Rp.{{ number_format($row->price * $row->qty) }}</td>
+                </tr>
+                @endforeach
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2">SUBTOTAL</td>
+                    <td>Rp {{ number_format($order->subtotal) }}</td>
+                </tr>
+                @if ($order->payment)
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2">Pembayaran</td>
+                    <td>Rp -{{ number_format($order->payment->amount) }}</td>
+                </tr>
+                @endif
+            </tfoot>
         </table>
-    </div>
-</body>
+        @if ($order->payment)
+        <div id="thanks">Terima kasih sudah berbelanja!</div>
+        <div id="notices">
+            <div><strong>PENGIRIM:</strong> {{ $order->payment->name }}</div>
+            <div class="notice">Transfer ke: {{ $order->payment->transfer_to }}</div>
+            <div class="notice">Tanggal: {{ date('M d, Y', strtotime($order->payment->transfer_date))  }}</div>
+        </div>
+        @else
+            <div id="thanks">Silahkan Lakukan Pembayaran!</div>
+            <div id="notices">
+                <div><strong>Catatan:</strong></div>
+                <div class="notice">Dimohon untuk segera melaukan pembayaran, agar barang cepat dikirim. Trimakasih!</div>
+            </div>
+        @endif
+        </main>
+        <footer>
+            Faktur dibuat di komputer dan valid tanpa tanda tangan dan segel.
+        </footer>
+    </body>
 </html>

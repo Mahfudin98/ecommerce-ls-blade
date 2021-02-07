@@ -34,6 +34,9 @@
     @if (session('error'))
         <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
+    @if (auth()->guard('customer')->check())
+
+    @else
     <div class="returning_customer">
         <div class="check_title">
             <h2>Returning Customer? <a href="#">Click here to login</a></h2>
@@ -59,6 +62,7 @@
             </div>
         </form>
     </div>
+    @endif
     {{-- start billing detail --}}
     <div class="billing_details">
         <div class="row">
@@ -67,19 +71,40 @@
                 <form class="row contact_form" action="{{ route('guest.store_checkout') }}" method="post" novalidate="novalidate">
                     @csrf
                     <div class="col-md-6 form-group p_star">
-                        <input type="text" class="form-control" id="first" name="customer_name" placeholder="Nama Lengkap" required>
+                        @if (auth()->guard('customer')->check())
+                        <input type="text" class="form-control" id="first" name="customer_name"
+                        value="{{ auth()->guard('customer')->user()->name }}" required>
+                        @else
+                            <input type="text" class="form-control" id="first" name="customer_name" placeholder="Nama Lengkap" required>
+                        @endif
                         <p class="text-danger">{{ $errors->first('customer_name') }}</p>
                     </div>
                     <div class="col-md-6 form-group p_star">
-                        <input type="text" class="form-control" id="number" name="customer_phone" placeholder="Nomor Telepon" required>
+                        @if (auth()->guard('customer')->check())
+                        <input type="text" class="form-control" id="number" name="customer_phone"
+                        value="{{ auth()->guard('customer')->user()->phone_number }}" required>
+                        @else
+                            <input type="text" class="form-control" id="number" name="customer_phone" placeholder="Nomor Telepon" required>
+                        @endif
                         <p class="text-danger">{{ $errors->first('customer_phone') }}</p>
                     </div>
                     <div class="col-md-12 form-group">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                        @if (auth()->guard('customer')->check())
+                            <input type="email" class="form-control" id="email" name="email"
+                                value="{{ auth()->guard('customer')->user()->email }}"
+                                required {{ auth()->guard('customer')->check() ? 'readonly':'' }}>
+                        @else
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                        @endif
                         <p class="text-danger">{{ $errors->first('email') }}</p>
                     </div>
                     <div class="col-md-12 form-group p_star">
-                        <input type="text" class="form-control" id="add1" name="customer_address" placeholder="Alamat Lengkap" required>
+                        @if (auth()->guard('customer')->check())
+                        <input type="text" class="form-control" id="add1" name="customer_address"
+                        value="{{ auth()->guard('customer')->user()->address }}" required>
+                        @else
+                            <input type="text" class="form-control" id="add1" name="customer_address" placeholder="Alamat Lengkap" required>
+                        @endif
                         <p class="text-danger">{{ $errors->first('customer_address') }}</p>
                     </div>
                     <div class="col-md-12 form-group p_star">
@@ -111,7 +136,7 @@
                         <p class="text-danger">{{ $errors->first('courier') }}</p>
                     </div>
                     <div class="col-md-12 form-group p_star">
-                        <input type="text" name="ongkos" id="ongkos">
+                        <input type="hidden" name="ongkos" id="ongkos">
                         {{-- <input type="text" name="weight" id="estimasi"> --}}
                         <p class="text-danger">{{ $errors->first('courier') }}</p>
                     </div>
