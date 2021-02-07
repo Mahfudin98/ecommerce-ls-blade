@@ -1,0 +1,167 @@
+
+.bg-pics {
+    background-color: #ffb19b !important;
+}
+
+.textside {
+    margin-left: 25px;
+  }
+
+  .navlogo img {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 60%;
+  }
+
+  .fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background: #FFFFFF;
+    height: 60px;
+    color: white;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 6px 10px;
+    margin: 5px 0px 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+  }
+
+  a {
+    color: #7D7D7D;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+  }
+
+  a:hover {
+    color: #7D7D7D;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+  }
+
+  .inforide {
+    box-shadow: 1px 2px 8px 0px #f1f1f1;
+    background-color: white;
+    border-radius: 8px;
+    height: 125px;
+  }
+
+  .rideone img {
+    width: 100%;
+  }
+
+  .ridetwo img {
+    width: 100%;
+  }
+
+  .ridethree img {
+    width: 100%;
+  }
+
+  .rideone {
+    background-color: #28a745;
+    padding-top: 25px;
+    border-radius: 8px 0px 0px 8px;
+    text-align: center;
+    height: 125px;
+    margin-left: 15px;
+  }
+
+  .ridetwo {
+    background-color: #ffc107;
+    padding-top: 30px;
+    border-radius: 8px 0px 0px 8px;
+    text-align: center;
+    height: 125px;
+    margin-left: 15px;
+  }
+
+  .ridethree {
+    background-color: #007bff;
+    padding-top: 35px;
+    border-radius: 8px 0px 0px 8px;
+    text-align: center;
+    height: 125px;
+    margin-left: 15px;
+  }
+
+  .fontsty {
+    margin-right: -15px;
+  }
+
+  .fontsty h2{
+    color: #6E6E6E;
+    font-size: 35px;
+    margin-top: 15px;
+    text-align: right;
+    margin-right: 30px;
+  }
+
+  .fontsty h4{
+    color: #6E6E6E;
+    font-size: 25px;
+    margin-top: 20px;
+    text-align: right;
+    margin-right: 30px;
+  }
+
+  .content-wrapper {
+    min-height: calc(100vh - 56px);
+    padding-top: 4rem;
+    overflow-x: hidden;
+    background: transparent;
+  }
+
+  body.sidenav-toggled .navbar-sidenav {
+    width: 55px;
+  }
+
+  body.sidenav-toggled .navbar-sidenav .nav-link-text {
+    display: none;
+  }
+
+  body.sidenav-toggled .navbar-sidenav .nav-item,
+  body.sidenav-toggled .navbar-sidenav .nav-link {
+    width: 55px !important;
+  }
+
+  body.sidenav-toggled .navbar-sidenav .nav-item:after,
+  body.sidenav-toggled .navbar-sidenav .nav-link:after {
+    display: none;
+  }
+
+  body.sidenav-toggled .navbar-sidenav .nav-item {
+    white-space: nowrap;
+  }
+
+
+  @media (min-width: 992px) {
+
+  .content-wrapper {
+    margin-left: 250px;
+    margin-right: 20px;
+  }
+
+  }
+
+  @media screen and (max-device-width: 640px) {
+}
