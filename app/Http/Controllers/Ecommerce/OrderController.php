@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ecommerce;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\OrderReturn;
@@ -26,9 +27,10 @@ class OrderController extends Controller
     {
         $order = Order::with(['district.city.province', 'details', 'details.product', 'payment'])
             ->where('invoice', $invoice)->first();
+        $comment = Comment::all();
 
         if (\Gate::forUser(auth()->guard('customer')->user())->allows('order-view', $order)) {
-            return view('customer.orders.view', compact('order'));
+            return view('customer.orders.view', compact('order', 'comment'));
         }
         return redirect(route('customer.orders'))->with(['error' => 'Anda Tidak Diizinkan Untuk Mengakses Order Orang Lain']);
     }

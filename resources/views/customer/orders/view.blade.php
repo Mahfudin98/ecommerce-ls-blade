@@ -136,7 +136,21 @@
                                                 <td>{{ number_format($row->price) }}</td>
                                                 <td>{{ $row->qty }} Item</td>
                                                 <td>{{ $row->weight }} gr</td>
-                                                <td><a href="{{ url('/member/comment/' . $row->product->slug) }}"><button class="btn btn-warning"><i class="fas fa-star" style="color: #f27272"></i>Nilai disini!</button></a></td>
+                                                <td>
+                                                    @if ($comment->find($row->product->id) || $comment->find(Auth::guard('customer')->user()->id))
+                                                        <a href="{{ url('/member/comment/' . $row->product->slug) }}">
+                                                            <button class="btn btn-warning"><i class="fas fa-star" style="color: #f27272">
+                                                                </i>Nilai disini!
+                                                            </button>
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ url('/member/comment/' . $row->product->slug) }}">
+                                                            <button class="btn btn-warning" disabled><i class="fas fa-star" style="color: #f27272">
+                                                                </i>Nilai disini!
+                                                            </button>
+                                                        </a>
+                                                    @endif
+                                                </td>
                                             </tr>
                                             @empty
                                             <tr>

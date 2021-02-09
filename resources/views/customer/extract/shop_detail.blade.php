@@ -156,7 +156,7 @@
                  aria-selected="false">Reviews</a>
             </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
+        <div class="tab-content" style="background-color: #ffb19b" id="myTabContent">
             <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <p>Beryl Cook is one of Britain’s most talented and amusing artists .Beryl’s pictures feature women of all shapes
                     and sizes enjoying themselves .Born between the two world wars, Beryl Cook eventually left Kendrick School in
@@ -248,30 +248,27 @@
             </div>
             <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="row total_rate">
-                            <div class="col-6">
+                            <div class="col-4">
+                                <div class="rating_list">
+
+                                </div>
+                            </div>
+                            <div class="col-4">
                                 <div class="box_total">
                                     <h5>Overall</h5>
                                     <h4>{{ number_format($average, 1) }}</h4>
-                                    <h6>(03 Reviews)</h6>
+                                    <h6>({{$comment->count()}} Reviews)</h6>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-4">
                                 <div class="rating_list">
-                                    <h3>Based on 3 Reviews</h3>
-                                    <ul class="list">
-                                        <li><a href="#">5 Star <i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #f27272"></i> 01</a></li>
-                                        <li><a href="#">4 Star <i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #000000"></i> 01</a></li>
-                                        <li><a href="#">3 Star <i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #000000"></i><i class="fa fa-star" style="color: #000000"></i> 01</a></li>
-                                        <li><a href="#">2 Star <i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #000000"></i><i class="fa fa-star" style="color: #000000"></i><i class="fa fa-star" style="color: #000000"></i> 01</a></li>
-                                        <li><a href="#">1 Star <i class="fa fa-star" style="color: #f27272"></i><i class="fa fa-star" style="color: #000000"></i><i class="fa fa-star" style="color: #000000"></i><i class="fa fa-star" style="color: #000000"></i><i class="fa fa-star" style="color: #000000"></i> 01</a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
                         @forelse ($comment as $row)
                         <div class="review_list">
                             <div class="review_item">
@@ -316,16 +313,18 @@
                                         <i class="fa fa-star" style="color: #f27272"></i>
                                         @endif
 
-                                        <div>
+                                        <div class="rounded float-right">
                                             @forelse ($image->where('comment_id', $row->id) as $item)
-                                            <img class="img-fluid" src="{{ asset('storage/comment/' . $item->path) }}" width="50" height="50" alt="">
+                                            <a href="{{ asset('storage/comment/' . $item->path) }}" target="_blank">
+                                                <img class="img-thumbnail" src="{{ asset('storage/comment/' . $item->path) }}" width="50" height="50" alt="">
+                                            </a>
                                             @empty
 
                                             @endforelse
                                         </div>
                                     </div>
                                 </div>
-                                <p>{{$row->comment}}</p>
+                                <p class="text-white align-justify">{{$row->comment}}</p>
                             </div>
                         </div>
                         @empty

@@ -72,7 +72,6 @@ Route::group(['prefix' => 'member', 'namespace' => 'Ecommerce'], function() {
     });
 });
 
-// Route::post('/ongkir', [CartController::class, 'getCourier']);
 Route::group(['middleware' => 'auth'], function() {
     Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

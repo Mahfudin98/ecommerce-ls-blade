@@ -30,9 +30,9 @@
                     <div class="single-footer-widget instafeed">
                         <h4 class="footer_title">Gallery</h4>
                         <ul class="list instafeed d-flex flex-wrap">
-                            {{-- @foreach ($product as $row)
-                                <li><img src="{{ asset('storage/products/' . $row->image) }}" weight="70" height="70" alt=""></li>
-                            @endforeach --}}
+                            @foreach ($product as $row)
+                                <li><img src="{{ asset('storage/products/' . $row->image) }}" class="img-fluid" style="height: 70px;" alt=" {{$row->name}} "></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

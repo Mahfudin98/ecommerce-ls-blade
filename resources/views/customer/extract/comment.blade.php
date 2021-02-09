@@ -100,7 +100,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-body" style="background-color: #ffb19d">
+                    <div class="card-body" style="background-color: #ffb19d80">
                         @if (session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
                         @endif
@@ -150,7 +150,8 @@
                                 <textarea class="form-control different-control w-100" name="comment" id="textarea" cols="30" rows="5" placeholder="Enter Message"></textarea>
                             </div>
                             <div class="form-group">
-                                <input type="file" class="form-control different-control w-100" name="image[]" multiple="true">
+                                <label for="image" class="text-dark">Maksimal 5 gambar | Kosongkan jika tidak perlu</label>
+                                <input id="image" type="file" class="form-control different-control w-100" max="5" name="image[]" multiple="true">
                             </div>
                             <div class="form-group text-center text-md-right mt-3">
                                 <button type="submit" class="button">Submit Now</button>

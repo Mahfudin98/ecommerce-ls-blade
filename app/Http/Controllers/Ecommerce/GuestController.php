@@ -42,8 +42,15 @@ class GuestController extends Controller
         $list = Product::where('slug', '!=', $slug)->paginate(4);
         $comment = Comment::where('product_id', $product->id)->get();
         $image = ImageComment::all();
-        $average = Comment::avg('rating');
-        return view('customer.extract.shop_detail', compact('product','list', 'comment', 'average', 'image'));
+        /* ratting */
+        $average = Comment::where('product_id', $product->id)->avg('rating');
+        return view('customer.extract.shop_detail', compact(
+            'product',
+            'list',
+            'comment',
+            'average',
+            'image'
+        ));
     }
 
     public function formComment($slug)
