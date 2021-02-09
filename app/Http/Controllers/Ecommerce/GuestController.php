@@ -9,6 +9,10 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Province;
+use App\Models\Comment;
+use App\Models\ImageComment;
+use Illuminate\Support\Facades\Storage;
+use willvincent\Rateable\Rating;
 
 class GuestController extends Controller
 {
@@ -36,7 +40,60 @@ class GuestController extends Controller
     {
         $product = Product::with(['category'])->where('slug', $slug)->first();
         $list = Product::where('slug', '!=', $slug)->paginate(4);
-        return view('customer.extract.shop_detail', compact('product','list'));
+        $comment = Comment::where('product_id', $product->id)->get();
+        $image = ImageComment::all();
+        $average = Comment::avg('rating');
+        return view('customer.extract.shop_detail', compact('product','list', 'comment', 'average', 'image'));
+    }
+
+    public function formComment($slug)
+    {
+        $product = Product::with(['category'])->where('slug', $slug)->first();
+        return view('customer.extract.comment', compact('product'));
+    }
+
+    public function coment(Request $request)
+    {
+        $this->validate($request, [
+            'comment' => 'nullable'
+        ]);
+
+        try {
+            $comment = Comment::create([
+                'customer_id' => $request->customer_id,
+                'product_id' => $request->product_id,
+                'rating' => $request->rate,
+                'comment' => $request->comment,
+                'status' => true,
+            ]);
+
+            $comments = Comment::find($comment->id);
+            if ($request->hasFile('image')) {
+                $files = $request->file('image');
+                foreach ($files as $file) {
+                    $name = rand(1,99999);
+                    $extension = $file->getClientOriginalExtension();
+                    $newName = $name . '.' .$extension;
+                    $size = $file->getSize();
+                    $file->storeAs('public/comment', $newName);
+
+                    $data = [
+                        'comment_id' => $comments->id,
+                        'path' => $newName,
+                        'size' => $size
+                    ];
+
+                    ImageComment::create($data);
+                }
+
+                return redirect()->back()->with(['success' => 'Komentar Ditambahkan']);
+            }
+
+
+            return redirect()->back()->with(['success' => 'Komentar Ditambahkan']);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
     }
 
     public function verifyCustomerRegistration($token)

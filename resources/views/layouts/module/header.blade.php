@@ -38,8 +38,8 @@
                 </ul>
                 <ul class="nav-shop">
                     <li class="nav-item"><button><a href="{{ route('guest.list_cart') }}"><i class="ti-shopping-cart"></i></a><span class="nav-shop__circle"></span></button></li>
-                    <li class="nav-item"><button><a href="{{ route('guest.order') }}"><i class="ti-bag"></i></a><span class="nav-shop__circle">3</span></button></li>
                     @if (auth()->guard('customer')->check())
+                        <li class="nav-item"><button><a href="{{ route('guest.order') }}"><i class="ti-bag"></i></a><span class="nav-shop__circle">3</span></button></li>
                         <li class="nav-item"><button><a href="{{ route('customer.settingForm') }}"><i class="ti-user"></i></a><span class="nav-shop__circle"></span></button></li>
                         <li class="nav-item"><a href="{{ route('customer.logout') }}" class="nav-link"><i class="ti-power-off"></i> Logout</a></li>
 					@else

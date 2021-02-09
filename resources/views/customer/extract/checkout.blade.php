@@ -43,15 +43,15 @@
         </div>
         <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new
             customer, please proceed to the Billing & Shipping section.</p>
-        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-            <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" placeholder="Username or Email*" onfocus="this.placeholder=''" onblur="this.placeholder = 'Username or Email*'" id="name" name="name">
-                <!-- <span class="placeholder" data-placeholder="Username or Email"></span> -->
+        <form class="row contact_form" action="{{ route('customer.post_login') }}" method="POST" id="contactForm">
+                @csrf
+            <div class="col-md-12 form-group p_star">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
             </div>
-            <div class="col-md-6 form-group p_star">
-                <input type="password" class="form-control" placeholder="Password*" onfocus="this.placeholder=''" onblur="this.placeholder = 'Password*'" id="password" name="password">
-                <!-- <span class="placeholder" data-placeholder="Password"></span> -->
+            <div class="col-md-12 form-group p_star">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
+
             <div class="col-md-12 form-group">
                 <button type="submit" value="submit" class="button button-login">login</button>
                 <div class="creat_account">

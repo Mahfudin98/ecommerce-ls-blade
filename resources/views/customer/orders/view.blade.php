@@ -14,13 +14,13 @@
     <div class="container h-100">
         <div class="blog-banner">
             <div class="text-center">
-                <h1>Order Confirmation</h1>
+                <h1>Order</h1>
                 <nav aria-label="breadcrumb" class="banner-breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Shop Category</li>
-        </ol>
-      </nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Order</li>
+                    </ol>
+                </nav>
             </div>
         </div>
 </div>
@@ -126,6 +126,7 @@
                                                 <th>Harga</th>
                                                 <th>Quantity</th>
                                                 <th>Berat</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -135,6 +136,7 @@
                                                 <td>{{ number_format($row->price) }}</td>
                                                 <td>{{ $row->qty }} Item</td>
                                                 <td>{{ $row->weight }} gr</td>
+                                                <td><a href="{{ url('/member/comment/' . $row->product->slug) }}"><button class="btn btn-warning"><i class="fas fa-star" style="color: #f27272"></i>Nilai disini!</button></a></td>
                                             </tr>
                                             @empty
                                             <tr>

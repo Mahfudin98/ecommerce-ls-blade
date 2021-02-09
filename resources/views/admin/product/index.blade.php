@@ -86,7 +86,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            {!! $product->links() !!}
+                            {!! $product->links('pagination::simple-bootstrap-4') !!}
                         </div>
                     </div>
                 </div>

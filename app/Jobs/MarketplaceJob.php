@@ -70,7 +70,7 @@ class MarketplaceJob implements ShouldQueue
                 'image' => $filename,
                 'price' => $row['price'],
                 'stock' => $row['stock'],
-                'weight' => $row['weight'],
+                'weight' => 350,
                 'status' => 1
             ]);
         }

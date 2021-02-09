@@ -40,7 +40,6 @@ Route::get('/contact', function () {
     return view('customer.contact');
 })->name('guest.contact');
 
-// Route::get('/order', [EcommerceOrderController::class, 'index'])->name('guest.order');
 
 Route::group(['prefix' => 'member', 'namespace' => 'Ecommerce'], function() {
     Route::get('login', [LoginController::class, 'loginForm'])->name('customer.login');
@@ -65,6 +64,11 @@ Route::group(['prefix' => 'member', 'namespace' => 'Ecommerce'], function() {
         Route::post('setting', [GuestController::class, 'customerUpdateProfile'])->name('customer.setting');
 
         Route::get('/afiliasi', [GuestController::class, 'listCommission'])->name('customer.affiliate');
+
+        Route::get('/order', [EcommerceOrderController::class, 'index'])->name('guest.order');
+
+        Route::get('/comment/{slug}', [GuestController::class, 'formComment'])->name('form.comment');
+        Route::post('/comment', [GuestController::class, 'coment'])->name('comment.post');
     });
 });
 
