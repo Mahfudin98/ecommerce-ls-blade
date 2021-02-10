@@ -40,22 +40,27 @@
         </div>
         <div class="row">
         @forelse ($products as $row)
-            <div class="col-md-6 col-lg-4 col-xl-3">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <img class="card-img" src="{{ asset('storage/products/' . $row->image) }}" alt="{{ $row->name }}">
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>{{ $row->category->name }}</p>
-                    <h4 class="card-product__title"><a href="{{ url('/product/' . $row->slug) }}">{{ $row->name }}</a></h4>
-                    <p class="card-product__price">Rp.{{ number_format($row->price) }}</p>
-                  </div>
-                </div>
+        <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="card text-center card-product">
+            <div class="card-product__img">
+                <img class="card-img" src="{{ asset('storage/products/' . $row->image) }}" alt="{{ $row->name }}">
+                <form action="{{ route('guest.cart') }}" method="POST">
+                @csrf
+                <ul class="card-product__imgOverlay">
+                    <li><a href="{{ url('/shop/' . $row->slug) }}"><button><i class="ti-search"></i></button></a></li>
+                    <input type="hidden" name="qty" value="1">
+					<input type="hidden" name="product_id" value="{{ $row->id }}">
+                    <li><button type="submit"><i class="ti-shopping-cart"></i></button></li>
+                </ul>
+                </form>
             </div>
+            <div class="card-body">
+                <p>{{ $row->category->name }}</p>
+                <h4 class="card-product__title"><a href="{{ url('/shop/' . $row->slug) }}">{{ $row->name }}</a></h4>
+                <p class="card-product__price">Rp.{{ number_format($row->price) }}</p>
+            </div>
+            </div>
+        </div>
         @empty
 
         @endforelse

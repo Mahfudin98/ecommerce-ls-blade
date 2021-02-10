@@ -88,11 +88,15 @@
                                 <div class="card text-center card-product">
                                 <div class="card-product__img">
                                     <img class="card-img" src="{{ asset('storage/products/' . $row->image) }}" alt="{{ $row->name }}">
-                                    <ul class="card-product__imgOverlay">
-                                    <li><button><i class="ti-search"></i></button></li>
-                                    <li><button><i class="ti-shopping-cart"></i></button></li>
-                                    <li><button><i class="ti-heart"></i></button></li>
-                                    </ul>
+                                    <form action="{{ route('guest.cart') }}" method="POST">
+                                        @csrf
+                                        <ul class="card-product__imgOverlay">
+                                            <li><a href="{{ url('/shop/' . $row->slug) }}"><button><i class="ti-search"></i></button></a></li>
+                                            <input type="hidden" name="qty" value="1">
+                                            <input type="hidden" name="product_id" value="{{ $row->id }}">
+                                            <li><button type="submit"><i class="ti-shopping-cart"></i></button></li>
+                                        </ul>
+                                    </form>
                                 </div>
                                 <div class="card-body">
                                     <p>{{ $row->category->name }}</p>

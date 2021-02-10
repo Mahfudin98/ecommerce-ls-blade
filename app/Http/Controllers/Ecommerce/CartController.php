@@ -166,6 +166,10 @@ class CartController extends Controller
                     'qty' => $row['qty'],
                     'weight' => $product->weight
                 ]);
+
+                $product->update([
+                    'stock' => $product['stock'] - $row['qty'],
+                ]);
             }
 
             DB::commit();

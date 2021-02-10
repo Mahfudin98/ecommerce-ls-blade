@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Ecommerce;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Order;
-use App\Models\OrderDetail;
 use App\Models\OrderReturn;
 use Illuminate\Http\Request;
 use App\Models\Payment;

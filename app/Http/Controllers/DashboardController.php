@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Order;
+use App\Models\OrderReturn;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use PDF;
@@ -15,7 +19,15 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('admin.dashboard');
+        $product = Product::all();
+        $order = Order::where('status', 0)->get();
+        $retur = OrderReturn::all();
+        $customer = Customer::all();
+        $user = User::all();
+        return view('admin.dashboard', compact(
+            'product', 'order', 'retur',
+            'customer', 'user'
+        ));
     }
     public function orderReport()
     {
