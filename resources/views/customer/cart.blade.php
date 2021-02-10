@@ -80,17 +80,8 @@
 
                     @empty
                         <tr>
-                            <td>
-                                Keranjang masih kosong
-                            </td>
-                            <td>
-                                Keranjang masih kosong
-                            </td>
-                            <td>
-                                Keranjang masih kosong
-                            </td>
-                            <td>
-                                Keranjang masih kosong
+                            <td colspan="4" class="text-center">
+                                <h3 style="color: #ffb19d">Keranjang masih kosong</h3>
                             </td>
                         </tr>
                     @endforelse

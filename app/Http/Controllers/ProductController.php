@@ -164,33 +164,13 @@ class ProductController extends Controller
     public function updateGudang(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|string|max:100',
-            'description' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'price' => 'required|integer',
-            'weight' => 'required|integer',
-            'image' => 'nullable|image|mimes:png,jpeg,jpg',
-            'stock' => 'required|integer'
+            'stock' => 'required|integer',
         ]);
 
         $product = Product::find($id);
-        $filename = $product->image;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/products', $filename);
-            File::delete(storage_path('app/public/products/' . $product->image));
-        }
-
         $product->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'category_id' => $request->category_id,
-            'price' => $request->price,
-            'weight' => $request->weight,
-            'image' => $filename,
             'stock' => $request->stock
         ]);
-        return redirect(route('product.index'))->with(['success' => 'Stock Produk Diambahkan']);
+        return redirect(route('gudang.product.index'))->with(['success' => 'Data Produk Diperbaharui']);
     }
 }

@@ -14,7 +14,7 @@
     </ol>
     <div class="container-fluid">
         <div class="animated fadeIn">
-            <form action="{{ route('product.update', $product->id) }}" method="post" enctype="multipart/form-data" >
+            <form action="{{ route('gudang.product.update', $product->id) }}" method="post" enctype="multipart/form-data" >
                 @csrf
                 @method('PUT')
 

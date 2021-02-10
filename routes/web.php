@@ -112,7 +112,7 @@ Route::group(['middleware' => 'auth'], function() {
             Route::post('/return', [OrderController::class, 'approveReturn'])->name('orders.approve_return');
         });
         /* route report */
-        Route::group(['prefix' => 'admin/reports'], function() {
+        Route::group(['prefix' => 'administrator/reports'], function() {
             Route::get('/order', [DashboardController::class, 'orderReport'])->name('report.order');
             Route::get('/order/pdf/{daterange}', [DashboardController::class, 'orderReportPdf'])->name('report.order_pdf');
             Route::get('/return', [DashboardController::class, 'returnReport'])->name('report.return');

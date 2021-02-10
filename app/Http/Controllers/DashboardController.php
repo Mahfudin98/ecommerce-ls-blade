@@ -39,7 +39,7 @@ class DashboardController extends Controller
         $end = Carbon::parse($date[1])->format('Y-m-d') . ' 23:59:59';
 
         $orders = Order::with(['customer.district'])->whereBetween('created_at', [$start, $end])->get();
-        $pdf = PDF::loadView('report.order_pdf', compact('orders', 'date'));
+        $pdf = PDF::loadView('admin.report.order_pdf', compact('orders', 'date'));
         return $pdf->stream();
     }
 
@@ -65,7 +65,7 @@ class DashboardController extends Controller
         $end = Carbon::parse($date[1])->format('Y-m-d') . ' 23:59:59';
 
         $orders = Order::with(['customer.district'])->has('return')->whereBetween('created_at', [$start, $end])->get();
-        $pdf = PDF::loadView('report.return_pdf', compact('orders', 'date'));
+        $pdf = PDF::loadView('admin.report.return_pdf', compact('orders', 'date'));
         return $pdf->stream();
     }
 }
