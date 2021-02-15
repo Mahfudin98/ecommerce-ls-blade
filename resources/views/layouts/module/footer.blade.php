@@ -51,8 +51,7 @@
                                 Phone Number
                             </p>
                             <p>
-                                +123 456 7890 <br>
-                                +123 456 7890
+                                (0233) 8285547
                             </p>
 
                             <p class="sm-head">
@@ -60,8 +59,7 @@
                                 Email
                             </p>
                             <p>
-                                free@infoexample.com <br>
-                                www.infoexample.com
+                                lsastariasukses@gmail.com
                             </p>
                         </div>
                     </div>

@@ -11,6 +11,8 @@ use App\Models\Customer;
 use App\Models\Province;
 use App\Models\Comment;
 use App\Models\ImageComment;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use willvincent\Rateable\Rating;
 
@@ -130,14 +132,28 @@ class GuestController extends Controller
             'phone_number' => 'required|max:15',
             'address' => 'required|string',
             'district_id' => 'required|exists:districts,id',
-            'password' => 'nullable|string|min:6'
+            'password' => 'nullable|string|min:6',
+            'image' => 'nullable'
         ]);
 
         $user = auth()->guard('customer')->user();
-        $data = $request->only('name', 'phone_number', 'address', 'district_id');
+        $data = $request->only('name', 'phone_number', 'address', 'district_id','image');
+        $filename = $user->image;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/customer', $filename);
+            File::delete(storage_path('app/public/customer/' . $user->image));
+        }
+
+        if ($request->image != '') {
+            $data['image'] = $filename;
+        }
+
         if ($request->password != '') {
             $data['password'] = $request->password;
         }
+
         $user->update($data);
         return redirect()->back()->with(['success' => 'Profil berhasil diperbaharui']);
     }

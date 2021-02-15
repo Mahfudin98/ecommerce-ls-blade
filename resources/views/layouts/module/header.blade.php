@@ -51,7 +51,11 @@
                     </li>
                     @if (auth()->guard('customer')->check())
                         <li class="nav-item"><button><a href="{{ route('guest.order') }}"><i class="ti-bag"></i></a></button></li>
+                        @if (auth()->guard('customer')->user()->image != null)
+                        <li class="nav-item"><button><a href="{{ route('customer.settingForm') }}"><img src="{{ asset('storage/customer/' . auth()->guard('customer')->user()->image) }}" class="rounded-circle z-depth-2 img-thumbnail" data-holder-rendered="true" height="25px" width="25px" alt=""></a></button></li>
+                        @else
                         <li class="nav-item"><button><a href="{{ route('customer.settingForm') }}"><i class="ti-user"></i></a><span class="nav-shop__circle"></span></button></li>
+                        @endif
                         <li class="nav-item"><a href="{{ route('customer.logout') }}" class="nav-link"><i class="ti-power-off"></i> Logout</a></li>
 					@else
                         <li class="nav-item"><a href="{{ route('customer.login') }}" class="nav-link"><i class="ti-user"></i> Login</a></li>

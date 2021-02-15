@@ -210,12 +210,12 @@
             <img src="https://lh3.googleusercontent.com/d/1PVOFE-UJYo_lp2_YOIlqpVyba5XD9n94?authuser=0">
         </div>
         <div id="company">
-            <h2 class="name">LS Astari</h2>
+            <h2 class="name">LS Skincare</h2>
             <div>Blok MekarMulya, Rt/Rw 01/01</div>
             <div>Ds Tenjolayar, Kec Cigasong</div>
             <div>Kab Majalengka, Prov Jawa barat</div>
             <div>(0233) 8285547</div>
-            {{-- <div><a href="mailto:company@example.com">company@example.com</a></div> --}}
+            <div><a href="mailto:lsastariasukses@gmail.com">lsastariasukses@gmail.com</a></div>
         </div>
         </div>
         </header>

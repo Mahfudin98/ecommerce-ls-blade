@@ -220,7 +220,12 @@
                             <div class="review_item">
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="{{asset('template/img/product/review-1.png')}}" alt="">
+                                        @if ($row->customer->image != null)
+                                        <img src="{{ asset('storage/customer/' . $row->customer->image) }}" width="50px" height="50px" class="rounded-circle z-depth-2" alt="">
+                                        @else
+                                        <img src="{{asset('template/img/avatar3.png')}}" width="50px" class="rounded-circle z-depth-2 img-thumbnail" data-holder-rendered="true" alt="">
+                                        @endif
+
                                     </div>
                                     <div class="media-body">
                                         <h4>{{$row->customer->name}}</h4>

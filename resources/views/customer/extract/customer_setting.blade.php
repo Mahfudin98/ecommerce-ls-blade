@@ -35,7 +35,7 @@
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
-            <form class="row login_form" action="{{ route('customer.setting') }}" method="post">
+            <form class="row login_form" action="{{ route('customer.setting') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="col-lg-6">
                     <div class="login_form_inner register_form_inner">
@@ -57,15 +57,15 @@
                             <input type="text" name="phone_number" class="form-control" required value="{{ $customer->phone_number }}" placeholder="Nomor HP/Whatsapp">
                             <p class="text-danger">{{ $errors->first('phone_number') }}</p>
                         </div>
+                        <div class="col-md-12 form-group">
+                            <input type="text" name="address" class="form-control" required value="{{ $customer->address }}" placeholder="Alamat">
+                            <p class="text-danger">{{ $errors->first('address') }}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="login_form_inner register_form_inner">
                         <h3>Update Akun</h3>
-                        <div class="col-md-12 form-group">
-                            <input type="text" name="address" class="form-control" required value="{{ $customer->address }}" placeholder="Alamat">
-                            <p class="text-danger">{{ $errors->first('address') }}</p>
-                        </div>
                         <div class="col-md-12 form-group">
                             <select class="form-control" name="province_id" id="province_id" required>
                                 <option value="">Pilih Propinsi</option>
@@ -86,6 +86,11 @@
                                 <option value="">Pilih Kecamatan</option>
                             </select>
                             <p class="text-danger">{{ $errors->first('district_id') }}</p>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="file" name="image" class="form-control" value="{{ $customer->image }}">
+                            <p class="text-danger">{{ $errors->first('image') }}</p>
+                            <p>Biarkan kosong jika tidak ingin mengganti foto</p>
                         </div>
                         <div class="col-md-12 form-group">
                             <button type="submit" value="submit" class="button w-100">Update</button>
