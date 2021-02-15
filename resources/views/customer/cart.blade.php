@@ -108,7 +108,11 @@
                           <td>
                               <div class="checkout_btn_inner d-flex align-items-center">
                                   <a class="gray_btn" href="{{ route('guest.shop') }}">Continue Shopping</a>
+                                  @if ($carts != null)
                                   <a class="primary-btn ml-2" href="{{ route('guest.checkout') }}">Proceed to checkout</a>
+                                  @else
+                                  <a class="primary-btn ml-2" href="{{ route('guest.shop') }}" aria-disabled="true">Proceed to checkout</a>
+                                  @endif
                               </div>
                           </td>
                       </tr>

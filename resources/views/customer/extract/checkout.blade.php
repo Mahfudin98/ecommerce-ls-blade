@@ -142,7 +142,7 @@
                     </div>
                     <div class="col-md-12 form-group">
                         <div class="creat_account">
-                            <button class="button button-paypal" href="#">Proceed to Paypal</button>
+                            <button class="button button-paypal" href="#">Proses Pembayaran</button>
                         </div>
                     </div>
                 </form>
