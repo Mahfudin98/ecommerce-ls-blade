@@ -43,6 +43,16 @@
             </div>
             <div class="col-lg-6">
                 <div class="login_form_inner">
+                    @if (session('success'))
+                    <div class="alert alert-danger" role="alert">
+                        {{session('success')}}
+                    </div>
+                    @endif
+                    @if (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{session('error')}}
+                    </div>
+                    @endif
                     <h3>Log in to enter</h3>
                     <form class="row login_form" action="{{ route('customer.post_login') }}" method="POST" id="contactForm">
                         @csrf

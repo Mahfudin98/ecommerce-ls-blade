@@ -26,10 +26,9 @@ class OrderController extends Controller
     {
         $order = Order::with(['district.city.province', 'details', 'details.product', 'payment'])
             ->where('invoice', $invoice)->first();
-        $comment = Comment::all();
 
         if (\Gate::forUser(auth()->guard('customer')->user())->allows('order-view', $order)) {
-            return view('customer.orders.view', compact('order', 'comment'));
+            return view('customer.orders.view', compact('order'));
         }
         return redirect(route('customer.orders'))->with(['error' => 'Anda Tidak Diizinkan Untuk Mengakses Order Orang Lain']);
     }
@@ -156,7 +155,7 @@ class OrderController extends Controller
         $chat = $this->getTelegram('https://api.telegram.org/'. $key .'/getUpdates', '');
         if ($chat['ok']) {
             $chat_id = $chat['result'][0]['message']['chat']['id'];
-            $text = 'Hai DaengWeb, OrderID ' . $order_id . ' Melakukan Permintaan Refund Dengan Alasan "'. $reason .'", Segera Dicek Ya!';
+            $text = 'Hai Admin, OrderID ' . $order_id . ' Melakukan Permintaan Refund Dengan Alasan "'. $reason .'", Segera Dicek Ya!';
             return $this->getTelegram('https://api.telegram.org/'. $key .'/sendMessage', '?chat_id=' . $chat_id . '&text=' . $text);
         }
     }

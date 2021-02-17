@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Ecommerce;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,25 @@ class LoginController extends Controller
         if (auth()->guard('customer')->attempt($auth)) {
             return redirect()->intended(route('customer.dashboard'));
         }
-        return redirect()->back()->with(['error' => 'Email / Password Salah']);
+        return redirect()->intended(route('verify'));
+    }
+
+    public function verify()
+    {
+        return view('customer.extract.verify');
+    }
+
+    public function postVerify(Request $request)
+    {
+        if ($user = Customer::where('activate_token', $request->active_token)->first()) {
+            $user->status=1;
+            $user->activate_token=null;
+            $user->save();
+            return redirect()->intended(route('customer.login'))->with(['success' => 'Verifikasi Berhasil, Silahkan Login']);
+        } else {
+            return back()->with(['error' => 'Kode anda salah']);
+        }
+
     }
 
     public function dashboard()

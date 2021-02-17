@@ -13,12 +13,14 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "irazasyed/telegram-bot-sdk": "dev-develop",
         "jeroennoten/laravel-adminlte": "^3.5",
         "kavist/rajaongkir": "^1.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
-        "spatie/laravel-permission": "^4.0"
+        "spatie/laravel-permission": "^4.0",
+        "twilio/sdk": "^6.17"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

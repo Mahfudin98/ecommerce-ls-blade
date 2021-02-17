@@ -46,6 +46,13 @@
                                     <div class="border_line"></div>
                                     <p>Rp.{{ number_format($row->total) }}</p>
                                     <div class="border_line"></div>
+                                    @if ($row->status == 4 && $row->return_count == 0)
+                                        <span style="color: palegreen">Selesai</span>
+                                    @endif
+                                    @if ($row->status == 4 && $row->return_count == 1)
+                                        <span style="color: red">Return Selesai</span>
+                                    @endif
+
                                     <form action="{{ route('customer.order_accept') }}" class="form-inline" onsubmit="return confirm('Kamu Yakin?');" method="post">
                                         @csrf
                                         <input type="hidden" name="order_id" value="{{ $row->id }}">

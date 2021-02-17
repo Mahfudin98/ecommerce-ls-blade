@@ -17,7 +17,7 @@ use App\Models\Province;
 use App\Models\City;
 use App\Models\District;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
-
+use Twilio\Rest\Client;
 
 class CartController extends Controller
 {
@@ -117,6 +117,17 @@ class CartController extends Controller
 
         DB::beginTransaction();
         try {
+
+            // twilio sms
+
+            $active_token = rand(1111,9999);
+            $phone_number = preg_replace("/^0/", "62", $request->customer_phone);
+            $twilio_phone = getenv("TWILIO_WHATSAPP_NUMBER");
+            $auth_token = getenv("TWILIO_AUTH_TOKEN");
+            $account_sid = getenv("TWILIO_ACCOUNT_SID");
+
+            // end twilio sms
+
             $affiliate = json_decode(request()->cookie('ls-afiliasi'), true);
             $explodeAffiliate = explode('-', $affiliate);
 
@@ -136,10 +147,10 @@ class CartController extends Controller
                     'name' => $request->customer_name,
                     'email' => $request->email,
                     'password' => $password,
-                    'phone_number' => $request->customer_phone,
+                    'phone_number' => $phone_number,
                     'address' => $request->customer_address,
                     'district_id' => $request->district_id,
-                    'activate_token' => Str::random(30),
+                    'activate_token' => $active_token,
                     'status' => false
                 ]);
             }
@@ -148,7 +159,7 @@ class CartController extends Controller
                 'invoice' => Str::random(4) . '-' . time(),
                 'customer_id' => $customer->id,
                 'customer_name' => $customer->name,
-                'customer_phone' => $request->customer_phone,
+                'customer_phone' => $phone_number,
                 'customer_address' => $request->customer_address,
                 'district_id' => $request->district_id,
                 'subtotal' => $subtotal,
@@ -179,6 +190,14 @@ class CartController extends Controller
             Cookie::queue(Cookie::forget('ls-afiliasi'));
 
             if (!auth()->guard('customer')->check()) {
+                $client = new Client($account_sid, $auth_token);
+                $client->messages->create(
+                    '+'.$phone_number,
+                    array(
+                        'from' => $twilio_phone,
+                        'body' => 'Code verifikasi anda: '. $active_token .', ini password anda:' . $password,
+                    )
+                );
                 Mail::to($request->email)->send(new CustomerRegisterMail($customer, $password));
             }
             return redirect(route('guest.finish_checkout', $order->invoice))->cookie($cookie);

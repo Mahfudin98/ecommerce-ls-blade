@@ -6,6 +6,7 @@ use App\Mail\OrderMail;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Twilio\Rest\Client;
 
 class OrderController extends Controller
 {
@@ -62,6 +63,25 @@ class OrderController extends Controller
     {
         $order = Order::with(['customer'])->find($request->order_id);
         $order->update(['tracking_number' => $request->tracking_number, 'status' => 3]);
+
+        // twilio sms
+
+        $phone_number = preg_replace("/^0/", "62", $order->customer_phone);
+        $twilio_phone = getenv("TWILIO_WHATSAPP_NUMBER");
+        $auth_token = getenv("TWILIO_AUTH_TOKEN");
+        $account_sid = getenv("TWILIO_ACCOUNT_SID");
+
+        // end twilio sms
+
+        $client = new Client($account_sid, $auth_token);
+            $client->messages->create(
+            '+'.$phone_number,
+            array(
+                'from' => $twilio_phone,
+                'body' => 'Terima kasih telah melakukan transaksi pada aplikasi kami, berikut nomor resi dari pesanan anda: '. $order->tracking_number .', invoice: '. $order->invoice,
+            )
+        );
+
         Mail::to($order->customer->email)->send(new OrderMail($order));
         return redirect()->back();
     }

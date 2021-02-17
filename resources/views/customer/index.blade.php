@@ -79,6 +79,7 @@
               <h3>Sale 30%</h3>
               <h4>Harga PROMO</h4>
               <p>Hanya Rp.180.000</p>
+              <a class="button button--active mt-3 mt-xl-4" href="#">Shop Now</a>
             </div>
           </div>
         </div>

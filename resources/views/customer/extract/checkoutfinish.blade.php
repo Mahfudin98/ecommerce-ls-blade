@@ -30,7 +30,7 @@
 <!--================Order Details Area =================-->
 <section class="order_details section-margin--small">
 <div class="container">
-  <p class="text-center billing-alert">Terima kasih atas pesananya. silahkan cek email kamu untuk login!</p>
+  <p class="text-center billing-alert">Terima kasih atas pesananya. silahkan cek sms atau email kamu untuk login!</p>
   <div class="row mb-5">
     <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
       <div class="confirmation-card">
