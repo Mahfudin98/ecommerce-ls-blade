@@ -83,27 +83,73 @@
                                         <td>{{ $order->payment->name }}</td>
                                     </tr>
                                     <tr>
+                                        @if ($order->payment->transfer_to != 'cod')
                                         <td>Tanggal Transfer</td>
                                         <td></td>
                                         <td>{{ $order->payment->transfer_date }}</td>
+                                        @else
+                                        <td>Tanggal Pembelian</td>
+                                        <td></td>
+                                        <td>{{ $order->payment->transfer_date }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
+                                        @if ($order->payment->transfer_to != 'cod')
                                         <td>Jumlah Transfer</td>
                                         <td></td>
                                         <td>Rp {{ number_format($order->payment->amount) }}</td>
+                                        @else
+                                        <td>Jumlah yang dibayar</td>
+                                        <td></td>
+                                        <td>Rp {{ number_format($order->payment->amount) }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
+                                        <td>Jumlah Ongkos Kirim</td>
+                                        <td></td>
+                                        <td>Rp {{ number_format($order->cost) }}</td>
+                                    </tr>
+                                    <tr>
+                                        @if ($order->payment->transfer_to != 'cod')
                                         <td>Tujuan Transfer</td>
                                         <td></td>
                                         <td>{{ $order->payment->transfer_to }}</td>
+                                        @else
+                                        <td>Metode Pembayaran</td>
+                                        <td></td>
+                                        <td>{{ $order->payment->transfer_to }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
+                                        @if ($order->payment->transfer_to != 'cod')
                                         <td>Bukti Transfer</td>
                                         <td></td>
                                         <td>
                                             <img src="{{ asset('storage/payment/' . $order->payment->proof) }}" width="50px" height="50px" alt="">
                                             <a href="{{ asset('storage/payment/' . $order->payment->proof) }}" target="_blank">Lihat Detail</a>
                                         </td>
+                                        @else
+                                        <td>Bukti Barang Sampai</td>
+                                            @if ($order->payment->proof != null)
+                                            <td></td>
+                                            <td>
+                                                <img src="{{ asset('storage/payment/' . $order->payment->proof) }}" width="50px" height="50px" alt="">
+                                                <a href="{{ asset('storage/payment/' . $order->payment->proof) }}" target="_blank">Lihat Detail</a>
+                                            </td>
+                                            @else
+                                                @if ($order->status == 3)
+                                                <td></td>
+                                                <td>
+                                                    <a href="{{ route('form.payment', $order->payment->id) }}">Upload Bukti Barang Sampai</a>
+                                                </td>
+                                                @else
+                                                <td></td>
+                                                <td>
+                                                    <p>Barang Masih diproses</p>
+                                                </td>
+                                                @endif
+                                            @endif
+                                        @endif
                                     </tr>
                                 </table>
                                 @else

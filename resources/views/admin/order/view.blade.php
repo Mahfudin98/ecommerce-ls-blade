@@ -81,16 +81,36 @@
                                             <td>{{ $order->payment->name }}</td>
                                         </tr>
                                         <tr>
+                                            @if ($order->payment->transfer_to != 'cod')
                                             <th>Bank Tujuan</th>
                                             <td>{{ $order->payment->transfer_to }}</td>
+                                            @else
+                                            <th>Metode Pembayaran</th>
+                                            <td>{{ $order->payment->transfer_to }}</td>
+                                            @endif
                                         </tr>
                                         <tr>
+                                            @if ($order->payment->transfer_to != 'cod')
                                             <th>Tanggal Transfer</th>
                                             <td>{{ $order->payment->transfer_date }}</td>
+                                            @else
+                                            <th>Tanggal Pembelian</th>
+                                            <td>{{ $order->payment->transfer_date }}</td>
+                                            @endif
                                         </tr>
                                         <tr>
+                                            @if ($order->payment->transfer_to != 'cod')
                                             <th>Bukti Pembayaran</th>
                                             <td><a target="_blank" href="{{ asset('storage/payment/' . $order->payment->proof) }}">Lihat</a></td>
+                                            @else
+                                                @if ($order->payment->proof != null)
+                                                <th>Bukti Barang Sampai</th>
+                                                <td><a target="_blank" href="{{ asset('storage/payment/' . $order->payment->proof) }}">Lihat</a></td>
+                                                @else
+                                                <th>Bukti Barang Sampai</th>
+                                                <td><strong>Belum Ada Bukti</strong></td>
+                                                @endif
+                                            @endif
                                         </tr>
                                         <tr>
                                             <th>Status</th>

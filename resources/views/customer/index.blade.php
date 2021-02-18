@@ -23,7 +23,7 @@
               <h4>Shop is fun</h4>
               <h1>Browse Our Premium Product</h1>
               <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.</p>
-              <a class="button button-hero" href="#">Browse Now</a>
+              <a class="button button-hero" href="{{route('guest.shop')}}">Browse Now</a>
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@
               <h3>Sale 30%</h3>
               <h4>Harga PROMO</h4>
               <p>Hanya Rp.180.000</p>
-              <a class="button button--active mt-3 mt-xl-4" href="#">Shop Now</a>
+              <a class="button button--active mt-3 mt-xl-4" href="{{route('guest.shop')}}">Shop Now</a>
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@
     <!-- ================ Best Selling item  carousel end ================= -->
 
     <!-- ================ Blog section start ================= -->
-    <section class="blog">
+    {{-- <section class="blog">
       <div class="container">
         <div class="section-intro pb-60px">
           <p>Popular Item in the market</p>
@@ -154,7 +154,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> --}}
     <!-- ================ Blog section end ================= -->
 
     <!-- ================ Subscribe section start ================= -->

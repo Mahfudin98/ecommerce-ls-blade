@@ -79,6 +79,31 @@ class OrderController extends Controller
         }
     }
 
+    public function formUpdatePayment($id)
+    {
+        $payment = Payment::find($id);
+        return view('customer.orders.payment', compact('payment'));
+    }
+
+    public function updatePayment(Request $request, $id)
+    {
+        $this->validate($request, [
+            'proof' => 'required|image|mimes:jpg,png,jpeg'
+        ]);
+
+        $payment = Payment::find($id);
+
+        $file = $request->file('proof');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('public/payment', $filename);
+
+        $payment->update([
+            'proof' => $filename,
+        ]);
+
+        return redirect()->back()->with(['success' => 'Terimakasih sudah berbelanja di toko kami']);
+    }
+
     public function pdf($invoice)
     {
         $order = Order::with(['district.city.province', 'details', 'details.product', 'payment'])

@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Cookie;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\District;
+use App\Models\Payment;
+use Carbon\Carbon;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 use Twilio\Rest\Client;
 
@@ -156,6 +158,12 @@ class CartController extends Controller
                 ]);
             }
 
+            if ($request->metode != 'cod') {
+                $status = 0;
+            } else {
+                $status = 1;
+            }
+
             $order = Order::create([
                 'invoice' => Str::random(4) . '-' . time(),
                 'customer_id' => $customer->id,
@@ -166,8 +174,20 @@ class CartController extends Controller
                 'subtotal' => $subtotal,
                 'cost' => $request->ongkos,
                 // 'shipping' => $shipping[0] . '-' . $shipping[0],
+                'status' => $status,
                 'ref' => $affiliate != '' && $explodeAffiliate[0] != auth()->guard('customer')->user()->id ? $affiliate:NULL
             ]);
+
+            if ($request->metode == 'cod') {
+                Payment::create([
+                    'order_id' => $order->id,
+                    'name' => $customer->name,
+                    'transfer_to' => $request->metode,
+                    'transfer_date' => Carbon::parse($request->transfer_date)->format('Y-m-d'),
+                    'amount' => $subtotal,
+                    'status' => false
+                ]);
+            }
 
             foreach ($carts as $row) {
                 $product = Product::find($row['product_id']);

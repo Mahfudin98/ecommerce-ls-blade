@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('phone_number');
+            $table->string('phone_number')->unique();
             $table->string('address');
             $table->unsignedBigInteger('district_id');
             $table->string('activate_token')->nullable();

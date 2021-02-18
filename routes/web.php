@@ -63,6 +63,9 @@ Route::group(['prefix' => 'member', 'namespace' => 'Ecommerce'], function() {
         Route::get('payment', [EcommerceOrderController::class, 'paymentForm'])->name('customer.paymentForm');
         Route::post('payment', [EcommerceOrderController::class, 'storePayment'])->name('customer.savePayment');
 
+        Route::get('cod/accept/{id}', [EcommerceOrderController::class, 'formUpdatePayment'])->name('form.payment');
+        Route::put('cod/update/{id}', [EcommerceOrderController::class, 'updatePayment'])->name('update.payment');
+
         Route::get('setting', [GuestController::class, 'customerSettingForm'])->name('customer.settingForm');
         Route::post('setting', [GuestController::class, 'customerUpdateProfile'])->name('customer.setting');
 
