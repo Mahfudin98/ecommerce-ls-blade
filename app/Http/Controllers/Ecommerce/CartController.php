@@ -112,7 +112,8 @@ class CartController extends Controller
             'province_id' => 'required|exists:provinces,id',
             'city_id' => 'required|exists:cities,id',
             'district_id' => 'required|exists:districts,id',
-            'courier' => 'required'
+            'courier' => 'required',
+            'metode' => 'required',
         ]);
 
         DB::beginTransaction();

@@ -27,6 +27,7 @@ Route::get('/', [GuestController::class, 'index'])->name('guest.index');
 Route::get('/shop', [GuestController::class, 'shop'])->name('guest.shop');
 Route::get('/category/{slug}', [GuestController::class, 'categoryProduct'])->name('guest.category');
 Route::get('/shop/{slug}', [GuestController::class, 'show'])->name('guest.show_product');
+Route::get('/search', [GuestController::class, 'search'])->name('search');
 
 Route::post('cart', [CartController::class, 'addToCart'])->name('guest.cart');
 Route::get('/carts', [CartController::class, 'listCart'])->name('guest.list_cart');

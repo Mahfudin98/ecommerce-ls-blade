@@ -26,16 +26,45 @@ class GuestController extends Controller
 
     public function shop()
     {
-        $categories = Category::all();
+        // $categories = Category::all();
         $products = Product::orderBy('created_at', 'DESC')->paginate(12);
-        return view('customer.shop', compact('products','categories'));
+        return view('customer.shop', compact('products'));
     }
 
     public function categoryProduct($slug)
     {
-        $categories = Category::orderBy('created_at', 'DESC')->paginate(12);
+        // $categories = Category::orderBy('created_at', 'DESC')->paginate(12);
         $products = Category::where('slug', $slug)->first()->product()->orderBy('created_at', 'DESC')->paginate(12);
-        return view('customer.shop', compact('products', 'categories'));
+        return view('customer.shop', compact('products'));
+    }
+
+    public function search(Request $request){
+        if ($request->ajax()) {
+            $output = "";
+
+            $product = Product::where('name', 'LIKE', '%' . $request->search. "%")->paginate(12);
+
+            if ($product) {
+                foreach ($product as $key => $value) {
+                    $output.=
+                    '<div class="col-md-6 col-lg-4">
+                        <div class="card text-center card-product">
+                            <div class="card-product__img">
+                                <img class="card-img" src="'.asset('storage/products/' . $value->image). '" alt="'.$value->name.'">
+                            </div>
+                            <div class="card-body">
+                                <p>'.$value->category->name.'</p>
+                                <h4 class="card-product__title"><a href="'.url('/shop/' . $value->slug).'">'.$value->name.'</a></h4>
+                                <p class="card-product__price">Rp.'.number_format($value->price).'</p>
+                            </div>
+                        </div>
+                    </div>'
+                    ;
+                }
+
+                return Response($output);
+            }
+        }
     }
 
     public function show($slug)

@@ -51,8 +51,14 @@
                                 <ul>
                                 @foreach ($categories as $category)
                                 <li class="filter-list">
-                                      <input class="pixel-radio" type="radio" id="men{{ $category->id }}" name="brand" value="http://www.free-backgrounds.com" onClick="gotolink()">
-                                      <label for="men{{ $category->id }}">{{ $category->name }}</label>
+                                    <a href="{{ url('/category/' . $category->slug) }}" style="color: black" class="nav-item active">{{ $category->name }}</a>
+                                    @foreach ($category->child as $child)
+                                        <ul class="list" style="display: block">
+                                            <li>
+                                                <a href="{{ url('/category/' . $child->slug) }}">{{ $child->name }}</a>
+                                            </li>
+                                        </ul>
+                                    @endforeach
                                 </li>
                                 @endforeach
                                 </ul>
@@ -72,7 +78,7 @@
                     </div>
                     <div>
                     <div class="input-group filter-bar-search">
-                        <input type="text" placeholder="Search">
+                        <input type="text" name="search" id="search" placeholder="Search">
                         <div class="input-group-append">
                         <button type="button"><i class="ti-search"></i></button>
                         </div>
@@ -82,7 +88,7 @@
                 <!-- End Filter Bar -->
                 <!-- Start Best Seller -->
                 <section class="lattest-product-area pb-40 category-list">
-                    <div class="row">
+                    <div class="row" id="temu">
                         @forelse ($products as $row)
                             <div class="col-md-6 col-lg-4">
                                 <div class="card text-center card-product">
@@ -106,7 +112,9 @@
                                 </div>
                             </div>
                         @empty
-
+                        <div class="col-md-12">
+                            <h3 class="text-center">Tidak ada produk</h3>
+                        </div>
                         @endforelse
                     </div>
                     {{ $products->links('pagination::customer') }}
@@ -146,4 +154,20 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+    $('#search').on('keyup',function(){
+        $value=$(this).val();
+        $.ajax({
+            type : 'get',
+            url : '{{URL::to('search')}}',
+            data:{'search':$value},
+            success:function(data){
+                $('#temu').html(data);
+            }
+        });
+    })
+</script>
+<script type="text/javascript">
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+</script>
 @endsection

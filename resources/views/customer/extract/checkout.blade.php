@@ -136,6 +136,14 @@
                         <p class="text-danger">{{ $errors->first('courier') }}</p>
                     </div>
                     <div class="col-md-12 form-group p_star">
+                        <select class="form-control" name="metode" id="metode" required>
+                            <option value="">Pilih Metode Pembayaran</option>
+                            <option value="cod">COD (Cash On Delivery)</option>
+                            <option value="trasfer">Transfer</option>
+                        </select>
+                        <p class="text-danger">{{ $errors->first('metode') }}</p>
+                    </div>
+                    <div class="col-md-12 form-group p_star">
                         <input type="hidden" name="ongkos" id="ongkos">
                         {{-- <input type="text" name="weight" id="estimasi"> --}}
                         <p class="text-danger">{{ $errors->first('courier') }}</p>
