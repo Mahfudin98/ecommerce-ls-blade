@@ -5,6 +5,21 @@
 @endsection
 
 @section('css')
+<style>
+.map-responsive{
+    overflow:hidden;
+    padding-bottom:0;
+    position:relative;
+    height:0;
+}
+.map-responsive iframe{
+    left:0;
+    top:0;
+    height:420px;
+    width:100%;
+    position:absolute;
+}
+</style>
 @endsection
 
 @section('content')
@@ -31,30 +46,9 @@
 <section class="section-margin--small">
 <div class="container">
   <div class="d-none d-sm-block mb-5 pb-4">
-    <div id="map" style="height: 420px;"></div>
-    <script>
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var grayStyles = [
-          {
-            featureType: "all",
-            stylers: [
-              { saturation: -90 },
-              { lightness: 50 }
-            ]
-          },
-          {elementType: 'labels.text.fill', stylers: [{color: '#A3A3A3'}]}
-        ];
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -31.197, lng: 150.744},
-          zoom: 9,
-          styles: grayStyles,
-          scrollwheel:  false
-        });
-      }
-
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
+    <div class="map-responsive" style="height: 420px;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1665.5982588309703!2d108.2678117471461!3d-6.83259316854083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDknNTUuMCJTIDEwOMKwMTYnMDYuMiJF!5e0!3m2!1sid!2sid!4v1613702529360!5m2!1sid!2sid" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
   </div>
 
   <div class="row">
@@ -62,22 +56,22 @@
       <div class="media contact-info">
         <span class="contact-info__icon"><i class="ti-home"></i></span>
         <div class="media-body">
-          <h3>California United States</h3>
-          <p>Santa monica bullevard</p>
+          <h3>Tenjolayar, Cigasong</h3>
+          <p>Majalengka, Jawa Barat</p>
         </div>
       </div>
       <div class="media contact-info">
-        <span class="contact-info__icon"><i class="ti-headphone"></i></span>
+        <span class="contact-info__icon"><i class="ti-mobile"></i></span>
         <div class="media-body">
-          <h3><a href="tel:454545654">00 (440) 9865 562</a></h3>
-          <p>Mon to Fri 9am to 6pm</p>
+          <h3><a href="tel:(0233) 8285547">(0233) 8285547</a></h3>
+          <p>Senin - Sabtu, 08.00 s/d 16.00</p>
         </div>
       </div>
       <div class="media contact-info">
         <span class="contact-info__icon"><i class="ti-email"></i></span>
         <div class="media-body">
-          <h3><a href="mailto:support@colorlib.com">support@colorlib.com</a></h3>
-          <p>Send us your query anytime!</p>
+          <h3><a href="mailto:lsastariasukses@gmail.com">lsastariasukses@gmail.com</a></h3>
+          <p>Kirimkan pertanyaan kapanpun!</p>
         </div>
       </div>
     </div>
