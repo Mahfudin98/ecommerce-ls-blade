@@ -76,7 +76,15 @@
       </div>
     </div>
     <div class="col-md-8 col-lg-9">
-      <form action="#/" class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+      <form action="{{route('post.contact')}}" class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+        @csrf
         <div class="row">
           <div class="col-lg-5">
             <div class="form-group">

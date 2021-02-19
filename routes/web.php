@@ -4,6 +4,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Ecommerce\CartController;
 use App\Http\Controllers\Ecommerce\GuestController;
@@ -37,9 +38,8 @@ Route::get('/checkout', [CartController::class, 'checkout'])->name('guest.checko
 Route::post('/checkout', [CartController::class, 'processCheckout'])->name('guest.store_checkout');
 Route::get('/checkout/{invoice}', [CartController::class, 'checkoutFinish'])->name('guest.finish_checkout');
 
-Route::get('/contact', function () {
-    return view('customer.contact');
-})->name('guest.contact');
+Route::get('/contact', [ContactController::class, 'contact'])->name('guest.contact');
+Route::post('/contact', [ContactController::class, 'contactPost'])->name('post.contact');
 
 
 Route::group(['prefix' => 'member', 'namespace' => 'Ecommerce'], function() {
