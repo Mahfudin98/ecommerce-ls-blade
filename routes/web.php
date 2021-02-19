@@ -100,6 +100,10 @@ Route::group(['middleware' => 'auth'], function() {
 
     /* role admin */
     Route::group(['middleware' => ['role:admin']], function () {
+        Route::post('admin/post/cs', [DashboardController::class, 'cspost'])->name('cs.post');
+        Route::delete('admin/delete/{id}', [DashboardController::class, 'csdelete'])->name('cs.delete');
+        Route::get('admin/dashboard/cs-edit/{id}', [DashboardController::class, 'csedit'])->name('cs.edit');
+        Route::put('admin/cs/update/{id}', [DashboardController::class, 'csupdate'])->name('cs.update');
         /* route kategori */
         Route::resource('admin/category', CategoryController::class)->except(['create', 'show']);
         /* route product */

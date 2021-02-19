@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\CustomerService;
 use App\Models\Order;
 use App\Models\OrderReturn;
 use App\Models\Product;
@@ -23,12 +24,67 @@ class DashboardController extends Controller
         $order = Order::where('status', 0)->get();
         $retur = OrderReturn::all();
         $customer = Customer::all();
+        $cs = CustomerService::orderBy('created_at', 'DESC')->paginate(10);
         $user = User::all();
         return view('admin.dashboard', compact(
             'product', 'order', 'retur',
-            'customer', 'user'
+            'customer', 'user', 'cs'
         ));
     }
+
+    public function cspost(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:100',
+            'message' => 'required',
+            'phone' => 'required',
+        ]);
+        // $message = ;
+        $phone_number = preg_replace("/^0/", "62", $request->phone);
+
+        CustomerService::create([
+            'name' => $request->name,
+            'message' => $request->message,
+            'phone' => $phone_number
+        ]);
+
+        return redirect(route('dashboard'))->with(['success' => 'CS Baru Ditambahkan']);
+    }
+
+    public function csdelete($id)
+    {
+        $cs = CustomerService::find($id);
+        $cs->delete();
+        return redirect(route('dashboard'))->with(['success' => 'CS Sudah Dihapus']);
+    }
+
+    public function csedit($id)
+    {
+        $cs = CustomerService::find($id);
+
+        return view('admin.csedit', compact('cs'));
+    }
+
+    public function csupdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:100',
+            'message' => 'required',
+            'phone' => 'required',
+        ]);
+
+        $cs = CustomerService::find($id);
+
+        $phone_number = preg_replace("/^0/", "62", $request->phone);
+        $cs->update([
+            'name' => $request->name,
+            'message' => $request->message,
+            'phone' => $phone_number
+        ]);
+
+        return redirect(route('dashboard'))->with(['success' => 'CS berhasil di edit']);
+    }
+
     public function orderReport()
     {
         $start = Carbon::now()->startOfMonth()->format('Y-m-d H:i:s');

@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('customer.*', 'App\Http\View\CategoryComposer');
         view()->composer('layouts.module.header', 'App\Http\View\CartComposer');
         view()->composer('layouts.module.footer', 'App\Http\View\ProductComposer');
+        view()->composer('layouts.template', 'App\Http\View\CustomerServiceComposer');
     }
 }

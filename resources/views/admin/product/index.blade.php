@@ -86,7 +86,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                            {!! $product->links('pagination::simple-bootstrap-4') !!}
+                            <div class="card-footer">
+                                {!! $product->links('pagination::simple-bootstrap-4') !!}
+                            </div>
                         </div>
                     </div>
                 </div>
