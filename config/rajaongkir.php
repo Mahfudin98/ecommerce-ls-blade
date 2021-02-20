@@ -11,5 +11,5 @@ return [
      * Atur tipe akun sesuai paket API yang Anda pilih di Raja Ongkir.
      * Pilihan yang tersedia: ['starter', 'basic', 'pro'].
      */
-    'package' => env('RAJAONGKIR_PACKAGE', 'starter'),
+    'package' => env('RAJAONGKIR_PACKAGE', 'pro'),
 ];

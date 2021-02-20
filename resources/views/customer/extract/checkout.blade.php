@@ -240,7 +240,7 @@
                 url:"{{ url('/api/cost') }}",
                 type: "POST",
                 data: {
-                        destination:         $('select[name=city_id]').val(),
+                        destination:         $('select[name=district_id]').val(),
                         courier:             $('select[name=courier]').val(),
                         weight:              $('#weight').val(),
                     },

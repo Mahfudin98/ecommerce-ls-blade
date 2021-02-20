@@ -241,9 +241,9 @@ class CartController extends Controller
         // ganti destination dari city ke district
         $cost = RajaOngkir::ongkosKirim([
             'origin'       => 252,
-            // 'originType'   => 'subdistrict',
+            'originType'   => 'city',
             'destination'  => $request->destination,
-            // 'destinationType' => 'subdistrict',
+            'destinationType' => 'subdistrict',
             'weight'       => $request->weight,
             'courier'      => $request->courier,
         ])->get();
