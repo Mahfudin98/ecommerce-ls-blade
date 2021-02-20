@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\CustomerService;
+use App\Models\DailyStock;
 use App\Models\Order;
 use App\Models\OrderReturn;
 use App\Models\Product;
@@ -26,17 +27,20 @@ class DashboardController extends Controller
         $customer = Customer::all();
         $cs = CustomerService::orderBy('created_at', 'DESC')->paginate(10);
         $user = User::all();
+        $daily = DailyStock::all();
         return view('admin.dashboard', compact(
             'product', 'order', 'retur',
-            'customer', 'user', 'cs'
+            'customer', 'user', 'cs', 'daily'
         ));
     }
 
+    // session cs
     public function cspost(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|string|max:100',
             'message' => 'required',
+            'status' => 'required',
             'phone' => 'required',
         ]);
         // $message = ;
@@ -45,7 +49,8 @@ class DashboardController extends Controller
         CustomerService::create([
             'name' => $request->name,
             'message' => $request->message,
-            'phone' => $phone_number
+            'phone' => $phone_number,
+            'status' => $request->status,
         ]);
 
         return redirect(route('dashboard'))->with(['success' => 'CS Baru Ditambahkan']);
@@ -71,6 +76,7 @@ class DashboardController extends Controller
             'name' => 'required|string|max:100',
             'message' => 'required',
             'phone' => 'required',
+            'status' => 'nullable'
         ]);
 
         $cs = CustomerService::find($id);
@@ -79,12 +85,15 @@ class DashboardController extends Controller
         $cs->update([
             'name' => $request->name,
             'message' => $request->message,
-            'phone' => $phone_number
+            'phone' => $phone_number,
+            'status' => $request->status
         ]);
 
         return redirect(route('dashboard'))->with(['success' => 'CS berhasil di edit']);
     }
+    // end session cs
 
+    // session order
     public function orderReport()
     {
         $start = Carbon::now()->startOfMonth()->format('Y-m-d H:i:s');
@@ -135,5 +144,55 @@ class DashboardController extends Controller
         $orders = Order::with(['customer.district'])->has('return')->whereBetween('created_at', [$start, $end])->get();
         $pdf = PDF::loadView('admin.report.return_pdf', compact('orders', 'date'));
         return $pdf->stream();
+    }
+    // end session order
+
+    // daily stock for gudang
+    public function dailyPost(Request $request)
+    {
+        $this->validate($request, [
+            'product_id' => 'required',
+            'stock' => 'required',
+            'catatan' => 'nullable',
+        ]);
+
+        DailyStock::create([
+            'product_id' => $request->product_id,
+            'stock' => $request->stock,
+            'catatan' => $request->catatan,
+        ]);
+
+        return redirect(route('dashboard'))->with(['success' => 'Stock Harian berhasil di tambahkan']);
+    }
+
+    public function dailyUpdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'stock' => 'required',
+            'catatan' => 'nullable',
+        ]);
+
+        $daily = DailyStock::find($id);
+
+        $daily->update([
+            'stock' => $request->stock,
+            'catatan' => $request->catatan,
+        ]);
+
+        return redirect(route('dashboard'))->with(['success' => 'Stock Harian berhasil di update']);
+    }
+
+    public function dailyedit($id)
+    {
+        $daily = DailyStock::find($id);
+
+        return view('admin.dailystock', compact('daily'));
+    }
+
+    public function dailydelete($id)
+    {
+        $daily = DailyStock::find($id);
+        $daily->delete();
+        return redirect(route('dashboard'))->with(['success' => 'Stock Harian Sudah Dihapus']);
     }
 }

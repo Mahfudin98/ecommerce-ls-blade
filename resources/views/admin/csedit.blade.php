@@ -35,6 +35,14 @@
                                     <textarea name="message" id="message" class="form-control" cols="30" rows="5" required>{{ $cs->message }}</textarea>
                                 </div>
                                 <div class="form-group">
+                                    <label for="staus">Status</label>
+                                    <select name="status" class="form-control" id="status">
+                                        <option value="">Silahkan Pilih</option>
+                                        <option value="1">Aktif</option>
+                                        <option value="0">Pending</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="phone">Nomor HP</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="phone">+62</span>

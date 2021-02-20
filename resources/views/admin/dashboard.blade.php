@@ -8,326 +8,424 @@
 
 @section('content')
     @role('superadmin')
-    <!-- Info boxes -->
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-box"></i></span>
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-box"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Produk</span>
-              <span class="info-box-number">
-                {{$product->count()}}
-                <small>Produk</small>
-              </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Pesanan</span>
+                <div class="info-box-content">
+                <span class="info-box-text">Produk</span>
                 <span class="info-box-number">
-                    {{$order->count()}}
-                    <small>Baru</small>
-                </span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <!-- fix for small devices only -->
-        <div class="clearfix hidden-md-up"></div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-undo-alt"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Return</span>
-                <span class="info-box-number">
-                    {{$retur->count()}}
+                    {{$product->count()}}
                     <small>Produk</small>
                 </span>
-              </div>
-              <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">User/Admin</span>
-              <span class="info-box-number">
-                  {{$user->count()}}
-                  <small>Orang</small>
-              </span>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
+
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Pesanan</span>
+                    <span class="info-box-number">
+                        {{$order->count()}}
+                        <small>Baru</small>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-undo-alt"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Return</span>
+                    <span class="info-box-number">
+                        {{$retur->count()}}
+                        <small>Produk</small>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                <div class="info-box-content">
+                <span class="info-box-text">User/Admin</span>
+                <span class="info-box-number">
+                    {{$user->count()}}
+                    <small>Orang</small>
+                </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
+        <!-- /.row -->
     @endrole
 
     @role('admin')
-    <!-- Info boxes -->
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-box"></i></span>
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-box"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Produk</span>
-              <span class="info-box-number">
-                {{$product->count()}}
-                <small>Produk</small>
-              </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Pesanan</span>
+                <div class="info-box-content">
+                <span class="info-box-text">Produk</span>
                 <span class="info-box-number">
-                    {{$order->count()}}
-                    <small>Baru</small>
-                </span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <!-- fix for small devices only -->
-        <div class="clearfix hidden-md-up"></div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-undo-alt"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Return</span>
-                <span class="info-box-number">
-                    {{$retur->count()}}
+                    {{$product->count()}}
                     <small>Produk</small>
                 </span>
-              </div>
-              <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Member</span>
-              <span class="info-box-number">
-                  {{$customer->count()}}
-                  <small>Orang</small>
-              </span>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-    </div>
-    @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
-    @if (session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <form action="{{route('cs.post')}}" method="post">
-                    @csrf
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Pesanan</span>
+                    <span class="info-box-number">
+                        {{$order->count()}}
+                        <small>Baru</small>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-undo-alt"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Return</span>
+                    <span class="info-box-number">
+                        {{$retur->count()}}
+                        <small>Produk</small>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                <div class="info-box-content">
+                <span class="info-box-text">Member</span>
+                <span class="info-box-number">
+                    {{$customer->count()}}
+                    <small>Orang</small>
+                </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <form action="{{route('cs.post')}}" method="post">
+                        @csrf
+                        <div class="card-header">
+                            <h4>Add Data CS</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="name">Nama CS</label>
+                                <input type="text" name="name" id="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Pesan</label>
+                                <textarea name="message" id="message" class="form-control" cols="30" rows="5" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="staus">Status</label>
+                                <select name="status" class="form-control" id="status">
+                                    <option value="1">Aktif</option>
+                                    <option value="0">Pending</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Nomor HP</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="phone">+62</span>
+                                    <input type="tel" name="phone" class="form-control" placeholder="08xxxxxxxxx" aria-label="phone" aria-describedby="phone" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary float-right" type="submit">Add CS</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card">
                     <div class="card-header">
-                        <h4>Add Data CS</h4>
+                        <h3>List Data CS</h3>
                     </div>
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="name">Nama CS</label>
-                            <input type="text" name="name" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Pesan</label>
-                            <textarea name="message" id="message" class="form-control" cols="30" rows="5" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Nomor HP</label>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="phone">+62</span>
-                                <input type="tel" name="phone" class="form-control" placeholder="08xxxxxxxxx" aria-label="phone" aria-describedby="phone" required>
-                            </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <th>Nama</th>
+                                    <th>Pesan</th>
+                                    <th>No HP</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </thead>
+                                <tbody>
+                                    @forelse ($cs as $row)
+                                    <tr>
+                                        <td>{{ $row->name }}</td>
+                                        <td>{{ $row->message }}</td>
+                                        <td>{{ preg_replace("/^62/", "0", $row->phone) }}</td>
+                                        <td>
+                                            @if ($row->status != 1)
+                                                Pending
+                                            @else
+                                                Aktif
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('cs.delete',$row->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{ route('cs.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                <hr style="color: #f27272">
+                                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                <hr style="color: #f27272">
+                                                <a class="btn btn-success" href="https://wa.me/{{$row->phone}}?text={{ urlencode(strtolower($row->message)) }}"><i class="fas fa-comments"></i></a>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="4" class="text-center">
+                                                <h3 style="color: #ffb19d">List CS masih kosong</h3>
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary float-right" type="submit">Add CS</button>
+                        {!! $cs->links('pagination::simple-bootstrap-4') !!}
                     </div>
-                </form>
-            </div>
-        </div>
-        <div class="col-sm-8">
-            <div class="card">
-                <div class="card-header">
-                    <h3>List Data CS</h3>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <th>Nama</th>
-                                <th>Pesan</th>
-                                <th>No HP</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </thead>
-                            <tbody>
-                                @forelse ($cs as $row)
-                                <tr>
-                                    <td>{{ $row->name }}</td>
-                                    <td>{{ $row->message }}</td>
-                                    <td>{{ preg_replace("/^62/", "0", $row->phone) }}</td>
-                                    <td>
-                                        @if ($row->status != 1)
-                                            Pending
-                                        @else
-                                            Aktif
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('cs.delete',$row->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a href="{{ route('cs.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                            <hr style="color: #f27272">
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                            <hr style="color: #f27272">
-                                            <a class="btn btn-success" href="https://wa.me/{{$row->phone}}?text={{ urlencode(strtolower($row->message)) }}"><i class="fas fa-comments"></i></a>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center">
-                                            <h3 style="color: #ffb19d">List CS masih kosong</h3>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    {!! $cs->links('pagination::simple-bootstrap-4') !!}
                 </div>
             </div>
         </div>
-    </div>
-    <!-- /.row -->
+        <!-- /.row -->
     @endrole
 
     @role('gudang')
-    <!-- Info boxes -->
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-box"></i></span>
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-box"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Produk</span>
-              <span class="info-box-number">
-                {{$product->count()}}
-                <small>Produk</small>
-              </span>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Pesanan</span>
+                <div class="info-box-content">
+                <span class="info-box-text">Produk</span>
                 <span class="info-box-number">
-                    {{$order->count()}}
-                    <small>Baru</small>
-                </span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <!-- fix for small devices only -->
-        <div class="clearfix hidden-md-up"></div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-undo-alt"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Return</span>
-                <span class="info-box-number">
-                    {{$retur->count()}}
+                    {{$product->count()}}
                     <small>Produk</small>
                 </span>
-              </div>
-              <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-archive"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Stok Produk</span>
-              <span class="info-box-number">
-                    {{$product->sum('stock')}}
-                    <small>Produk</small>
-              </span>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
+
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Pesanan</span>
+                    <span class="info-box-number">
+                        {{$order->count()}}
+                        <small>Baru</small>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-undo-alt"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Return</span>
+                    <span class="info-box-number">
+                        {{$retur->count()}}
+                        <small>Produk</small>
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-archive"></i></span>
+
+                <div class="info-box-content">
+                <span class="info-box-text">Stok Produk</span>
+                <span class="info-box-number">
+                        {{$product->sum('stock')}}
+                        <small>Produk</small>
+                </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
+
+        @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <form action="{{route('daily.post')}}" method="post">
+                        @csrf
+                        <div class="card-header">
+                            <h4>Add Data Stock Harian</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="product_id">Nama Produk</label>
+                                <select name="product_id" class="form-control" required>
+                                    <option value="">Pilih Produk</option>
+                                    @foreach ($product as $row)
+                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                    @endforeach
+                                </select>
+                                <p class="text-danger">{{ $errors->first('product_id') }}</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="stock">Stock</label>
+                                <input type="number" name="stock" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="catatan">Catatan</label>
+                                <textarea name="catatan" id="catatan" class="form-control" cols="30" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary float-right" type="submit">Add Stock Harian</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>List Data Stock Harian</h3>
+                    </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th>Nama</th>
+                                        <th>Stock</th>
+                                        <th>Catatan</th>
+                                        <th>Aksi</th>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($daily as $row)
+                                        <tr>
+                                            <td>{{ $row->product->name }}</td>
+                                            <td>{{ $row->stock }}</td>
+                                            <td>{{ $row->catatan }}</td>
+                                            <td>
+                                                <form action="{{ route('daily.destroy',$row->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a href="{{ route('daily.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                    <hr style="color: #f27272">
+                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">
+                                                    <h3 style="color: #ffb19d">List Stock Harian masih kosong</h3>
+                                                </td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        @if ($daily->count())
+                        <div class="card-footer">
+                            <h3>Total stock saat ini : <strong>{{ $daily->sum('stock') }}</strong></h3>
+                        </div>
+                        @endif
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
     @endrole
 @stop
 

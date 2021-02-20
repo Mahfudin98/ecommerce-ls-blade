@@ -137,6 +137,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('gudang/produk', [ProductController::class, 'indexGudang'])->name('gudang.product.index');
         Route::get('gudang/produk/{product_id}/edit', [ProductController::class, 'editGudang'])->name('gudang.product.edit');
         Route::put('gudang/produk/{product_id}', [ProductController::class, 'updateGudang'])->name('gudang.product.update');
+
+        Route::post('gudang/daily', [DashboardController::class, 'dailyPost'])->name('daily.post');
+        Route::put('gudang/daily/{id}', [DashboardController::class, 'dailyUpdate'])->name('daily.update');
+        Route::get('gudang/daily/edit/{id}', [DashboardController::class, 'dailyEdit'])->name('daily.edit');
+        Route::delete('gudang/destroy/{id}', [DashboardController::class, 'dailyDelete'])->name('daily.destroy');
     });
     /* end role gudang */
 });
