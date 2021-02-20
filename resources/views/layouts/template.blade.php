@@ -54,7 +54,7 @@
         {{-- main page --}}
         @yield('content')
         @if (is_object($cs) && $cs->count())
-        <a href="https://wa.me/62{{$cs->phone}}?text={{$cs->message}}">
+        <a href="https://wa.me/{{$cs->phone}}?text={{$cs->message}}">
             <button id="myBtn" class="myBtn"><i class="fa fa-whatsapp" style="font-size:40px;"></i></button>
         </a>
         @endif
