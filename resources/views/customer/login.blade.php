@@ -83,5 +83,5 @@
 @endsection
 
 @section('js')
-<script src="{{asset('template/vendors/skrollr.min.js')}}"></script>
+{{-- <script src="{{asset('template/vendors/skrollr.min.js')}}"></script> --}}
 @endsection

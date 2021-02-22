@@ -100,7 +100,7 @@
     <div class="container">
         <div class="row s_product_inner">
             <div class="col-lg-6">
-                <div class="owl-carousel owl-theme s_Product_carousel">
+                <div class="s_Product_carousel">
                     <div class="single-prd-item">
                         <img class="img-fluid" src="{{ asset('storage/products/' . $product->image) }}" alt="{{ $product->name }}">
                     </div>
@@ -158,7 +158,7 @@
         </ul>
         <div class="tab-content" style="background-color: #ffb19b" id="myTabContent">
             <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <p class="text-justify">{{ $product->description}}</p>
+                <p class="text-justify text-dark">{{ $product->description}}</p>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="table-responsive">
@@ -166,26 +166,26 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <h5>Berat</h5>
+                                    <h5 class="text-dark">Berat</h5>
                                 </td>
                                 <td>
-                                    <h5>{{ $product->weight}} <span>gr</span></h5>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Stock</h5>
-                                </td>
-                                <td>
-                                    <h5>{{ $product->stock }}</h5>
+                                    <h5 class="text-dark">{{ $product->weight}} <span>gr</span></h5>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <h5>Harga</h5>
+                                    <h5 class="text-dark">Stock</h5>
                                 </td>
                                 <td>
-                                    <h5>Rp. {{ number_format($product->price) }}</h5>
+                                    <h5 class="text-dark">{{ $product->stock }}</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class="text-dark">Harga</h5>
+                                </td>
+                                <td>
+                                    <h5 class="text-dark">Rp. {{ number_format($product->price) }}</h5>
                                 </td>
                             </tr>
                         </tbody>
@@ -324,5 +324,5 @@
     console.log('New star rating: ' + this.value);
     });
 </script>
-<script src="{{asset('template/vendors/skrollr.min.js')}}"></script>
+{{-- <script src="{{asset('template/vendors/skrollr.min.js')}}"></script> --}}
 @endsection
