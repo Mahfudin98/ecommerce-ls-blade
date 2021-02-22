@@ -59,7 +59,7 @@
                                 Email
                             </strong>
                             <p class="text-dark">
-                                lsastariasukses@gmail.com
+                                lsastarisukses@gmail.com
                             </p>
                         </div>
                     </div>

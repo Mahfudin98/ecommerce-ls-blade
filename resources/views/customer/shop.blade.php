@@ -78,9 +78,9 @@
                     </div>
                     <div>
                     <div class="input-group filter-bar-search">
-                        <input type="text" name="search" id="search" placeholder="Search">
+                        <input type="text" class="form-control" name="search" id="search" placeholder="Search">
                         <div class="input-group-append">
-                        <button type="button"><i class="ti-search"></i></button>
+                        <button type="button" class="btn btn-default"><i class="ti-search"></i></button>
                         </div>
                     </div>
                     </div>

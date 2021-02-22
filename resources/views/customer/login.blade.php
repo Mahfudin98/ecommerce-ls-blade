@@ -16,11 +16,11 @@
     <div class="container h-100">
         <div class="blog-banner">
             <div class="text-center">
-                <h1>Login / Register</h1>
+                <h1>Login Member</h1>
                 <nav aria-label="breadcrumb" class="banner-breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Login/Register</li>
+          <li class="breadcrumb-item active" aria-current="page">Login Member</li>
         </ol>
       </nav>
             </div>
