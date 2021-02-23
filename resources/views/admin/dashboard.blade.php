@@ -93,7 +93,6 @@
                                         <th>Nama</th>
                                         <th>Stock</th>
                                         <th>Catatan</th>
-                                        <th>Aksi</th>
                                     </thead>
                                     <tbody>
                                         @forelse ($daily as $row)
@@ -101,14 +100,6 @@
                                             <td>{{ $row->name }}</td>
                                             <td><strong>{{ $row->stock }}</strong> <span class="badge badge-info">{{$row->qty}}</span></td>
                                             <td>{{ $row->catatan }}</td>
-                                            <td>
-                                                <form action="{{ route('daily.destroy',$row->id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('daily.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a> |
-                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                                </form>
-                                            </td>
                                         </tr>
                                         @empty
                                             <tr>
@@ -321,7 +312,6 @@
                                         <th>Nama</th>
                                         <th>Stock</th>
                                         <th>Catatan</th>
-                                        <th>Aksi</th>
                                     </thead>
                                     <tbody>
                                         @forelse ($daily as $row)
@@ -329,14 +319,6 @@
                                             <td>{{ $row->name }}</td>
                                             <td><strong>{{ $row->stock }}</strong> <span class="badge badge-info">{{$row->qty}}</span></td>
                                             <td>{{ $row->catatan }}</td>
-                                            <td>
-                                                <form action="{{ route('daily.destroy',$row->id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('daily.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a> |
-                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                                </form>
-                                            </td>
                                         </tr>
                                         @empty
                                             <tr>
