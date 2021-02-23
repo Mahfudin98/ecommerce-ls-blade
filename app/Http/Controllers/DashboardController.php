@@ -151,14 +151,16 @@ class DashboardController extends Controller
     public function dailyPost(Request $request)
     {
         $this->validate($request, [
-            'product_id' => 'required',
+            'name' => 'required',
             'stock' => 'required',
+            'qty' => 'required',
             'catatan' => 'nullable',
         ]);
 
         DailyStock::create([
-            'product_id' => $request->product_id,
+            'name' => $request->name,
             'stock' => $request->stock,
+            'qty' => $request->qty,
             'catatan' => $request->catatan,
         ]);
 
@@ -169,6 +171,7 @@ class DashboardController extends Controller
     {
         $this->validate($request, [
             'stock' => 'required',
+            'qty' => 'nullable',
             'catatan' => 'nullable',
         ]);
 
@@ -176,6 +179,7 @@ class DashboardController extends Controller
 
         $daily->update([
             'stock' => $request->stock,
+            'qty' => $request->qty,
             'catatan' => $request->catatan,
         ]);
 

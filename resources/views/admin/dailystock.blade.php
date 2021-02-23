@@ -18,7 +18,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">{{$daily->product->name}}</h4>
+                            <h4 class="card-title">{{$daily->name}}</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('daily.update', $daily->id) }}" method="post">
@@ -29,6 +29,15 @@
                                     <div class="form-group">
                                         <label for="stock">Stock</label>
                                         <input type="number" name="stock" value="{{ $daily->stock }}" class="form-control" required>
+                                    </div>
+                                    <div>
+                                        <label for="qty">Quantiti</label>
+                                        <select name="qty" class="form-control">
+                                            <option value="{{$daily->qty}}">Pilih Quantiti</option>
+                                            <option value="dus">Dus</option>
+                                            <option value="picis">Picis</option>
+                                        </select>
+                                        <p>kosongkan jika tidak ingin mengganti</p>
                                     </div>
                                     <div class="form-group">
                                         <label for="catatan">Catatan</label>

@@ -352,18 +352,21 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="product_id">Nama Produk</label>
-                                <select name="product_id" class="form-control" required>
-                                    <option value="">Pilih Produk</option>
-                                    @foreach ($product as $row)
-                                        <option value="{{ $row->id }}">{{ $row->name }}</option>
-                                    @endforeach
-                                </select>
-                                <p class="text-danger">{{ $errors->first('product_id') }}</p>
+                                <label for="name">Nama Produk</label>
+                                <input type="text" id="name" class="form-control" name="name">
                             </div>
                             <div class="form-group">
                                 <label for="stock">Stock</label>
                                 <input type="number" name="stock" class="form-control" required>
+                            </div>
+                            <div>
+                                <label for="qty">Quantiti</label>
+                                <select name="qty" class="form-control" required>
+                                    <option value="">Pilih Quantiti</option>
+                                    <option value="dus">Dus</option>
+                                    <option value="picis">Picis</option>
+                                </select>
+                                <p class="text-danger">{{ $errors->first('qty') }}</p>
                             </div>
                             <div class="form-group">
                                 <label for="catatan">Catatan</label>
@@ -393,15 +396,14 @@
                                     <tbody>
                                         @forelse ($daily as $row)
                                         <tr>
-                                            <td>{{ $row->product->name }}</td>
-                                            <td>{{ $row->stock }}</td>
+                                            <td>{{ $row->name }}</td>
+                                            <td><strong>{{ $row->stock }}</strong> <span class="badge badge-info">{{$row->qty}}</span></td>
                                             <td>{{ $row->catatan }}</td>
                                             <td>
                                                 <form action="{{ route('daily.destroy',$row->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('daily.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                                    <hr style="color: #f27272">
+                                                    <a href="{{ route('daily.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a> |
                                                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>

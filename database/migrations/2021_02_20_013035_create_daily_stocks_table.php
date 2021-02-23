@@ -15,8 +15,9 @@ class CreateDailyStocksTable extends Migration
     {
         Schema::create('daily_stocks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
+            $table->string('name');
             $table->integer('stock');
+            $table->string('qty');
             $table->text('catatan')->nullable();
             $table->timestamps();
         });

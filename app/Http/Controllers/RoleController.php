@@ -26,13 +26,13 @@ class RoleController extends Controller
         ]);
 
         $role = Role::firstOrCreate(['name' => $request->name]);
-        return redirect()->back()->with(['success' => 'Role: <strong>' . $role->name . '</strong> Ditambahkan']);
+        return redirect()->back()->with(['success' => 'Role: ' . $role->name . ' Ditambahkan']);
     }
 
     public function destroy($id)
     {
         $role = Role::findOrFail($id);
         $role->delete();
-        return redirect()->back()->with(['success' => 'Role: <strong>' . $role->name . '</strong> Dihapus']);
+        return redirect()->back()->with(['success' => 'Role: ' . $role->name . ' Dihapus']);
     }
 }
