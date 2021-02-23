@@ -80,6 +80,55 @@
             </div>
             <!-- /.col -->
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>List Data Stock Harian</h3>
+                    </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th>Nama</th>
+                                        <th>Stock</th>
+                                        <th>Catatan</th>
+                                        <th>Aksi</th>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($daily as $row)
+                                        <tr>
+                                            <td>{{ $row->name }}</td>
+                                            <td><strong>{{ $row->stock }}</strong> <span class="badge badge-info">{{$row->qty}}</span></td>
+                                            <td>{{ $row->catatan }}</td>
+                                            <td>
+                                                <form action="{{ route('daily.destroy',$row->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a href="{{ route('daily.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a> |
+                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">
+                                                    <h3 style="color: #ffb19d">List Stock Harian masih kosong</h3>
+                                                </td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        @if ($daily->count())
+                        <div class="card-footer">
+                            <h3>Total stock saat ini : <strong>{{ $daily->sum('stock') }}</strong></h3>
+                        </div>
+                        @endif
+                </div>
+            </div>
+        </div>
         <!-- /.row -->
     @endrole
 
@@ -259,6 +308,55 @@
             </div>
         </div>
         <!-- /.row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>List Data Stock Harian</h3>
+                    </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th>Nama</th>
+                                        <th>Stock</th>
+                                        <th>Catatan</th>
+                                        <th>Aksi</th>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($daily as $row)
+                                        <tr>
+                                            <td>{{ $row->name }}</td>
+                                            <td><strong>{{ $row->stock }}</strong> <span class="badge badge-info">{{$row->qty}}</span></td>
+                                            <td>{{ $row->catatan }}</td>
+                                            <td>
+                                                <form action="{{ route('daily.destroy',$row->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a href="{{ route('daily.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a> |
+                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">
+                                                    <h3 style="color: #ffb19d">List Stock Harian masih kosong</h3>
+                                                </td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        @if ($daily->count())
+                        <div class="card-footer">
+                            <h3>Total stock saat ini : <strong>{{ $daily->sum('stock') }}</strong></h3>
+                        </div>
+                        @endif
+                </div>
+            </div>
+        </div>
     @endrole
 
     @role('gudang')
