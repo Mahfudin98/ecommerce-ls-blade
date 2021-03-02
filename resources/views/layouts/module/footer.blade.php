@@ -4,13 +4,12 @@
             <div class="row section_gap">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-footer-widget tp_widgets">
-                        <h4 class="footer_title large_title">Our Mission</h4>
+                        <h4 class="footer_title large_title">Misi Kita</h4>
                         <p class="text-dark">
-                            So seed seed green that winged cattle in. Gathering thing made fly you're no
-                            divided deep moved us lan Gathering thing us land years living.
+                            LS Skincare, akan terus berkomitmen dan berinovasi memberikan pelayanan dan kualitas yang terbaik kepada semua customer setia LS Skincare.
                         </p>
                         <p class="text-dark">
-                            So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
+                            Karena sebagai brand skincare yang sangat belia LS Skincare harus bisa memberikan manfaat dan membantu menyelesaikan keresahan semua perempuan di Indonesia.
                         </p>
                     </div>
                 </div>
@@ -18,11 +17,11 @@
                     <div class="single-footer-widget tp_widgets">
                         <h4 class="footer_title">Quick Links</h4>
                         <ul class="list">
-                            <li><a class="text-dark" href="#">Home</a></li>
-                            <li><a class="text-dark" href="#">Shop</a></li>
-                            <li><a class="text-dark" href="#">Contact</a></li>
-                            <li><a class="text-dark" href="#">Cart</a></li>
-                            <li><a class="text-dark" href="#">Login</a></li>
+                            <li><a class="text-dark" href="{{ route('guest.index') }}">Home</a></li>
+                            <li><a class="text-dark" href="{{ route('guest.shop') }}">Shop</a></li>
+                            <li><a class="text-dark" href="{{ route('guest.contact') }}">Contact</a></li>
+                            <li><a class="text-dark" href="{{ route('guest.list_cart') }}">Cart</a></li>
+                            <li><a class="text-dark" href="{{ route('customer.logout') }}">Login</a></li>
                         </ul>
                     </div>
                 </div>
@@ -44,14 +43,14 @@
                                 <span class="fa fa-location-arrow"></span>
                                 PT LAROSSA SUKSESTAM
                             </strong>
-                            <p class="text-dark">Blok Mekar Mulia, Rt/Rw 01/1, Ds. Tenjolayar, Kec. Cigasong, Kab. Majalengka.</p>
+                            <p class="text-dark">Blok Mekarmulya, Rt/Rw 01/01, Ds. Tenjolayar, Kec. Cigasong, Kab. Majalengka.</p>
 
                             <strong class="sm-head text-dark">
                                 <span class="fa fa-phone"></span>
-                                Phone Number
+                                Nomor Telepon
                             </strong>
                             <p class="text-dark">
-                                (0233) 8285547
+                                085289654321
                             </p>
 
                             <strong class="sm-head text-dark">

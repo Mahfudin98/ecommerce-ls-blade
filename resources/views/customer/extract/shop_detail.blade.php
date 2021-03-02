@@ -81,11 +81,11 @@
     <div class="container h-100">
         <div class="blog-banner">
             <div class="text-center">
-                <h1>Shop Single</h1>
+                <h1>Detai Produk</h1>
                 <nav aria-label="breadcrumb" class="banner-breadcrumb">
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Shop Single</li>
+                    <li class="breadcrumb-item active" aria-current="page">Detai Produk</li>
                     </ol>
                 </nav>
             </div>
@@ -131,7 +131,7 @@
                                 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                         </div>
                         <hr>
-                        <button class="button primary-btn" type="submit">Add to Cart</button>
+                        <button class="button primary-btn" type="submit">Tambah Ke Keranjang</button>
                     </form>
                 </div>
             </div>
@@ -145,20 +145,20 @@
     <div class="container">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Deskripsi</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-                 aria-selected="false">Specification</a>
+                 aria-selected="false">Keterangan</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
                  aria-selected="false">Reviews</a>
             </li>
         </ul>
-        <div class="tab-content" style="background-color: #ffb19b" id="myTabContent">
+        <div class="tab-content text-dark" style="background-color: #ffb19b" id="myTabContent">
             <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <p class="text-justify text-dark">{{ $product->description}}</p>
+                <p class="text-justify text-dark">{!! $product->description !!}</p>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="table-responsive">
@@ -279,7 +279,9 @@
                             </div>
                         </div>
                         @empty
-
+                        <div class="col-md-12 align-justify">
+                            <h3 class="text-center">Belum ada review</h3>
+                        </div>
                         @endforelse
                     </div>
                 </div>
@@ -293,8 +295,8 @@
 <section class="related-product-area section-margin--small mt-0">
     <div class="container">
         <div class="section-intro pb-60px">
-        <p>Popular Item in the market</p>
-        <h2>Top <span class="section-intro__style">Product</span></h2>
+            <p>Item Populer di pasar</p>
+            <h2>Populer <span class="section-intro__style">Product</span></h2>
     </div>
     <div class="row mt-30">
         @forelse ($list as $row)
@@ -310,7 +312,9 @@
                 </div>
             </div>
         @empty
-
+        <div class="col-md-12">
+            <h3 class="text-center">Belum ada produk</h3>
+        </div>
         @endforelse
     </div>
 </section>

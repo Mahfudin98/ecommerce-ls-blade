@@ -29,11 +29,11 @@
     <div class="container h-100">
         <div class="blog-banner">
             <div class="text-center">
-                <h1>Contact Us</h1>
+                <h1>Hubungi Kami</h1>
                 <nav aria-label="breadcrumb" class="banner-breadcrumb">
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                    <li class="breadcrumb-item active" aria-current="page">Hubungi Kami</li>
                     </ol>
                 </nav>
             </div>
@@ -63,7 +63,7 @@
       <div class="media contact-info">
         <span class="contact-info__icon"><i class="ti-mobile"></i></span>
         <div class="media-body">
-          <h3><a href="tel:(0233) 8285547">(0233) 8285547</a></h3>
+          <h3><a href="tel:085289654321">085289654321</a></h3>
           <p>Senin - Sabtu, 08.00 s/d 16.00</p>
         </div>
       </div>

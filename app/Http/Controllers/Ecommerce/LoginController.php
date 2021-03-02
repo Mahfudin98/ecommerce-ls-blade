@@ -25,9 +25,9 @@ class LoginController extends Controller
         $auth = $request->only('email', 'password');
         $auth['status'] = 1;
         if (auth()->guard('customer')->attempt($auth)) {
-            return redirect()->intended(route('customer.dashboard'));
+            return redirect(route('customer.dashboard'));
         }
-        return redirect()->intended(route('verify'));
+        return redirect(route('customer.verify.sms'));
     }
 
     public function verify()
@@ -41,7 +41,7 @@ class LoginController extends Controller
             $user->status=1;
             $user->activate_token=null;
             $user->save();
-            return redirect()->intended(route('customer.login'))->with(['success' => 'Verifikasi Berhasil, Silahkan Login']);
+            return redirect(route('customer.login'))->with(['success' => 'Verifikasi Berhasil, Silahkan Login']);
         } else {
             return back()->with(['error' => 'Kode anda salah']);
         }

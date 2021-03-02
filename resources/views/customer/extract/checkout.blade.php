@@ -39,10 +39,10 @@
     @else
     <div class="returning_customer">
         <div class="check_title">
-            <h2>Returning Customer? <a href="#">Click here to login</a></h2>
+            <h2>Pelanggan yang kembali? <a href="{{ route('customer.login') }}">Klik di sini untuk login</a></h2>
         </div>
-        <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new
-            customer, please proceed to the Billing & Shipping section.</p>
+        <p>Jika Anda pernah berbelanja dengan kami sebelumnya, silahkan login pada form yang ada dibawah. Jika Anda baru
+            pelanggan, lanjutkan ke bagian Penagihan & Pengiriman.</p>
         <form class="row contact_form" action="{{ route('customer.post_login') }}" method="POST" id="contactForm">
                 @csrf
             <div class="col-md-12 form-group p_star">
@@ -67,7 +67,7 @@
     <div class="billing_details">
         <div class="row">
             <div class="col-lg-8">
-                <h3>Billing Details</h3>
+                <h3>Rincian Penagihan</h3>
                 <form class="row contact_form" action="{{ route('guest.store_checkout') }}" method="post" novalidate="novalidate">
                     @csrf
                     <div class="col-md-6 form-group p_star">
@@ -157,9 +157,9 @@
             </div>
             <div class="col-lg-4">
                 <div class="order_box">
-                    <h2>Your Order</h2>
+                    <h2>Pesanan Anda</h2>
                     <ul class="list">
-                        <li><a href="#"><h4>Product <span>Total</span></h4></a></li>
+                        <li><a href="#"><h4>Produk <span>Total</span></h4></a></li>
                         @foreach ($carts as $row)
                         <li>
                             <a href="#">

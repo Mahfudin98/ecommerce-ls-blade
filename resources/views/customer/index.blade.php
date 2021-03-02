@@ -35,8 +35,8 @@
     <section class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
-          <p>Popular Item in the market</p>
-          <h2>Trending <span class="section-intro__style">Product</span></h2>
+          <p>Item Populer di pasar</p>
+          <h2>Populer <span class="section-intro__style">Product</span></h2>
         </div>
         <div class="row">
         @forelse ($products as $row)
@@ -62,7 +62,9 @@
             </div>
         </div>
         @empty
-
+        <div class="col-md-12">
+            <h3 class="text-center">Tidak ada produk</h3>
+        </div>
         @endforelse
         </div>
       </div>
@@ -71,7 +73,7 @@
 
 
     <!-- ================ offer section start ================= -->
-    <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+    {{-- <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
       <div class="container">
         <div class="row">
           <div class="col-xl-5">
@@ -84,7 +86,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> --}}
     <!-- ================ offer section end ================= -->
 
     <!-- ================ Best Selling item  carousel ================= -->
@@ -97,8 +99,7 @@
     {{-- <section class="blog">
       <div class="container">
         <div class="section-intro pb-60px">
-          <p>Popular Item in the market</p>
-          <h2>Latest <span class="section-intro__style">News</span></h2>
+          <h2>Berita <span class="section-intro__style">LS Skincare</span></h2>
         </div>
 
         <div class="row">
@@ -158,7 +159,7 @@
     <!-- ================ Blog section end ================= -->
 
     <!-- ================ Subscribe section start ================= -->
-    <section class="subscribe-position">
+    {{-- <section class="subscribe-position">
       <div class="container">
         <div class="subscribe text-center">
           <h3 class="subscribe__title">Get Update From Anywhere</h3>
@@ -179,7 +180,7 @@
 
         </div>
       </div>
-    </section>
+    </section> --}}
     <!-- ================ Subscribe section end ================= -->
 </main>
 @endsection

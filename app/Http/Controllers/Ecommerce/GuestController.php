@@ -20,14 +20,14 @@ class GuestController extends Controller
 {
     public function index()
     {
-        $products = Product::orderBy('created_at', 'DESC')->paginate(8);
+        $products = Product::where('status', 1)->orderBy('created_at', 'DESC')->paginate(8);
         return view('customer.index', compact('products'));
     }
 
     public function shop()
     {
         // $categories = Category::all();
-        $products = Product::orderBy('created_at', 'DESC')->paginate(12);
+        $products = Product::where('status', 1)->orderBy('created_at', 'DESC')->paginate(12);
         return view('customer.shop', compact('products'));
     }
 

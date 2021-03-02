@@ -46,7 +46,7 @@ Route::group(['prefix' => 'member', 'namespace' => 'Ecommerce'], function() {
     Route::get('login', [LoginController::class, 'loginForm'])->name('customer.login');
     Route::post('/post/login', [LoginController::class, 'login'])->name('customer.post_login');
     Route::get('verify/{token}', [GuestController::class, 'verifyCustomerRegistration'])->name('customer.verify');
-    Route::get('/verify', [LoginController::class, 'verify'])->name('verify');
+    Route::get('/verify', [LoginController::class, 'verify'])->name('customer.verify.sms');
     Route::post('/verify', [LoginController::class, 'postVerify'])->name('post.verify');
 
     Route::group(['middleware' => 'customer'], function() {

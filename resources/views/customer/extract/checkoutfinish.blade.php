@@ -34,7 +34,7 @@
   <div class="row mb-5">
     <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
       <div class="confirmation-card">
-        <h3 class="billing-title">Order Info</h3>
+        <h3 class="billing-title">Informasi Pesanan</h3>
         <table class="order-rable">
           <tr>
             <td>Invoice</td>
@@ -68,6 +68,10 @@
             <td>: {{ $order->customer_address }}</td>
           </tr>
           <tr>
+            <td>Kecamatan</td>
+            <td>: {{ $order->district->name }}</td>
+          </tr>
+          <tr>
             <td>Kota</td>
             <td>: {{ $order->district->city->name }}</td>
           </tr>
@@ -84,7 +88,7 @@
         <table class="order-rable">
           <tr>
             <td>Alamat</td>
-            <td>: Blok Mekar Mulia, Rt/Rw 01/1, Ds. Tenjolayar, Kec. Cigasong</td>
+            <td>: Blok Mekarmulya, Rt/Rw 01/01, Ds. Tenjolayar, Kec. Cigasong.</td>
           </tr>
           <tr>
             <td>Kota</td>
@@ -103,12 +107,12 @@
     </div>
   </div>
   <div class="order_details_table">
-    <h2>Order Details</h2>
+    <h2>Detail Pesanan</h2>
     <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Product</th>
+            <th scope="col">Produk</th>
             <th scope="col">Quantity</th>
             <th scope="col">Total</th>
           </tr>

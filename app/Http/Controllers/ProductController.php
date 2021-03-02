@@ -100,6 +100,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'weight' => $request->weight,
             'stock' => $request->stock,
+            'status' => $request->status,
             'image' => $filename
         ]);
         return redirect(route('product.index'))->with(['success' => 'Data Produk Diperbaharui']);

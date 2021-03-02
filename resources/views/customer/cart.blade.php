@@ -14,11 +14,11 @@
     <div class="container h-100">
         <div class="blog-banner">
             <div class="text-center">
-                <h1>Shopping Cart</h1>
+                <h1>Keranjang Belanja</h1>
                 <nav aria-label="breadcrumb" class="banner-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+                        <li class="breadcrumb-item active" aria-current="page">Keranjang Belanja</li>
                     </ol>
                 </nav>
             </div>
@@ -37,8 +37,8 @@
                     @csrf
                   <thead>
                       <tr>
-                          <th scope="col">Product</th>
-                          <th scope="col">Price</th>
+                          <th scope="col">Produk</th>
+                          <th scope="col">Harga</th>
                           <th scope="col">Quantity</th>
                           <th scope="col">Total</th>
                       </tr>
@@ -87,7 +87,7 @@
                     @endforelse
                       <tr class="bottom_button">
                             <td>
-                                <button class="button" type="submit">Update Cart</button>
+                                <button class="button" type="submit">Update Keranjang</button>
                             </td>
                             <td>
                             </td>
@@ -107,11 +107,11 @@
                           </td>
                           <td>
                               <div class="checkout_btn_inner d-flex align-items-center">
-                                  <a class="gray_btn" href="{{ route('guest.shop') }}">Continue Shopping</a>
+                                  <a class="gray_btn" href="{{ route('guest.shop') }}">Lanjutkan Belanja</a>
                                   @if ($carts != null)
-                                  <a class="primary-btn ml-2" href="{{ route('guest.checkout') }}">Proceed to checkout</a>
+                                  <a class="primary-btn ml-2" href="{{ route('guest.checkout') }}" aria-disabled="true">Lanjut Checkout</a>
                                   @else
-                                  <a class="primary-btn ml-2" href="{{ route('guest.shop') }}" aria-disabled="true">Proceed to checkout</a>
+                                  <a class="primary-btn ml-2" href="{{ route('guest.shop') }}" aria-disabled="true">Lanjut Checkout</a>
                                   @endif
                               </div>
                           </td>
