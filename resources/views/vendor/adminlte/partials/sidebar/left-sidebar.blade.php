@@ -21,7 +21,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link {{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-tachometer-alt text-success"></i>
                       <p>
                         Dashboard
                       </p>
@@ -67,7 +67,7 @@
                     <li class="nav-header">Admin</li>
                     <li class="nav-item">
                         <a href="{{ route('category.index') }}" class="nav-link {{ (request()->is('admin/category*')) ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-tags"></i>
+                            <i class="nav-icon fas fa-tags text-muted"></i>
                         <p>
                             Category
                         </p>
@@ -75,7 +75,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('product.index') }}" class="nav-link {{ (request()->is('admin/product*')) ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-box"></i>
+                            <i class="nav-icon fas fa-box text-danger"></i>
                         <p>
                             Product
                         </p>
@@ -83,18 +83,18 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('orders.index') }}" class="nav-link {{ (request()->is('admin/orders')) ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-dolly-flatbed"></i>
+                            <i class="nav-icon fas fa-dolly-flatbed text-warning"></i>
                         <p>
                             Pesanan
                         </p>
                         </a>
                     </li>
-                    <li class="nav-item menu-{{ (request()->is('admin/reports*')) ? 'open' : '' }}">
-                        <a href="#" class="nav-link {{ (request()->is('admin/reports*')) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-book"></i>
+                    <li class="nav-item menu-{{ (request()->is('administrator/reports*')) ? 'open' : '' }}">
+                        <a href="#" class="nav-link {{ (request()->is('administrator/reports*')) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-book text-info"></i>
                         <p>
                         Report
-                            <i class="right fas fa-hand-point-left"></i>
+                            <i class="right fas fa-hand-point-left text-warning"></i>
                         </p>
                         </a>
                         <ul class="nav nav-treeview">
@@ -111,6 +111,14 @@
                             </a>
                         </li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('other') }}" class="nav-link {{ (request()->is('admin/other')) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-grip-horizontal text-success"></i>
+                        <p>
+                            Lainnya
+                        </p>
+                        </a>
                     </li>
                 @endrole
                 {{-- end role admin --}}

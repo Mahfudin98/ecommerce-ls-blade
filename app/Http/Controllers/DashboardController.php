@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\CustomerService;
 use App\Models\DailyStock;
+use App\Models\NewsPost;
 use App\Models\Order;
 use App\Models\OrderReturn;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 use PDF;
 class DashboardController extends Controller
 {
@@ -25,12 +28,12 @@ class DashboardController extends Controller
         $order = Order::where('status', 0)->get();
         $retur = OrderReturn::all();
         $customer = Customer::all();
-        $cs = CustomerService::orderBy('created_at', 'DESC')->paginate(10);
         $user = User::all();
-        $daily = DailyStock::all();
+        $daily = DailyStock::orderBy('created_at', 'DESC')->paginate(10);
+
         return view('admin.dashboard', compact(
             'product', 'order', 'retur',
-            'customer', 'user', 'cs', 'daily'
+            'customer', 'user', 'daily'
         ));
     }
 
@@ -53,14 +56,14 @@ class DashboardController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect(route('dashboard'))->with(['success' => 'CS Baru Ditambahkan']);
+        return redirect(route('other'))->with(['success' => 'CS Baru Ditambahkan']);
     }
 
     public function csdelete($id)
     {
         $cs = CustomerService::find($id);
         $cs->delete();
-        return redirect(route('dashboard'))->with(['success' => 'CS Sudah Dihapus']);
+        return redirect(route('other'))->with(['success' => 'CS Sudah Dihapus']);
     }
 
     public function csedit($id)
@@ -89,7 +92,7 @@ class DashboardController extends Controller
             'status' => $request->status
         ]);
 
-        return redirect(route('dashboard'))->with(['success' => 'CS berhasil di edit']);
+        return redirect(route('other'))->with(['success' => 'CS berhasil di edit']);
     }
     // end session cs
 
@@ -198,5 +201,85 @@ class DashboardController extends Controller
         $daily = DailyStock::find($id);
         $daily->delete();
         return redirect(route('dashboard'))->with(['success' => 'Stock Harian Sudah Dihapus']);
+    }
+    // other
+    public function other()
+    {
+        $news = NewsPost::orderBy('created_at', 'DESC')->paginate(10);
+        $cs = CustomerService::orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('admin.other', compact('cs', 'news'));
+    }
+    // news
+    public function newsPost(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'link' => 'required',
+            'body' => 'required',
+            'image' => 'required|image|mimes:png,jpeg,jpg',
+            'sumber' => 'required',
+            'status' => 'required'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . Str::slug($request->title) . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/news', $filename);
+
+            NewsPost::create([
+                'title' => $request->title,
+                'link' => $request->link,
+                'body' => $request->body,
+                'image' => $filename,
+                'sumber' => $request->sumber,
+                'status' => $request->status
+            ]);
+            return redirect(route('other'))->with(['success' => 'Berita Baru Ditambahkan']);
+        }
+    }
+    public function newsEdit($id)
+    {
+        $news = NewsPost::find($id);
+        return view('admin.beritaedit', compact('news'));
+    }
+    public function newsUpdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'link' => 'required',
+            'body' => 'required',
+            'image' => 'nullable|image|mimes:png,jpeg,jpg',
+            'sumber' => 'required',
+            'status' => 'nullable'
+        ]);
+
+        $news = NewsPost::find($id);
+        $filename = $news->image;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/news', $filename);
+            File::delete(storage_path('app/public/news/' . $news->image));
+        }
+
+        $news->update([
+            'title'     => $request->title,
+            'link'      => $request->link,
+            'body'      => $request->body,
+            'image'     => $filename,
+            'sumber'    => $request->sumber,
+            'status'    => $request->status,
+        ]);
+
+        return redirect(route('other'))->with(['success' => 'Berita Diperbaharui']);
+    }
+
+    public function newsDelete($id)
+    {
+        $news = NewsPost::find($id);
+        File::delete(storage_path('app/public/news/' . $news->image));
+        $news->delete();
+        return redirect(route('other'))->with(['success' => 'Berita Dihapus']);
     }
 }

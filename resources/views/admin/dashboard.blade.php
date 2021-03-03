@@ -103,7 +103,7 @@
                                         </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="4" class="text-center">
+                                                <td colspan="3" class="text-center">
                                                     <h3 style="color: #ffb19d">List Stock Harian masih kosong</h3>
                                                 </td>
                                             </tr>
@@ -196,109 +196,7 @@
             </div>
             <!-- /.col -->
         </div>
-        @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card">
-                    <form action="{{route('cs.post')}}" method="post">
-                        @csrf
-                        <div class="card-header">
-                            <h4>Add Data CS</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="name">Nama CS</label>
-                                <input type="text" name="name" id="name" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Pesan</label>
-                                <textarea name="message" id="message" class="form-control" cols="30" rows="5" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="staus">Status</label>
-                                <select name="status" class="form-control" id="status">
-                                    <option value="1">Aktif</option>
-                                    <option value="0">Pending</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Nomor HP</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="phone">+62</span>
-                                    <input type="tel" name="phone" class="form-control" placeholder="08xxxxxxxxx" aria-label="phone" aria-describedby="phone" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-primary float-right" type="submit">Add CS</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>List Data CS</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <th>Nama</th>
-                                    <th>Pesan</th>
-                                    <th>No HP</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </thead>
-                                <tbody>
-                                    @forelse ($cs as $row)
-                                    <tr>
-                                        <td>{{ $row->name }}</td>
-                                        <td>{{ $row->message }}</td>
-                                        <td>{{ preg_replace("/^62/", "0", $row->phone) }}</td>
-                                        <td>
-                                            @if ($row->status != 1)
-                                                Pending
-                                            @else
-                                                Aktif
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('cs.delete',$row->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <a href="{{ route('cs.edit', $row->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                                <hr style="color: #f27272">
-                                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                                <hr style="color: #f27272">
-                                                <a class="btn btn-success" href="https://wa.me/{{$row->phone}}?text={{ urlencode(strtolower($row->message)) }}"><i class="fas fa-comments"></i></a>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="4" class="text-center">
-                                                <h3 style="color: #ffb19d">List CS masih kosong</h3>
-                                            </td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        {!! $cs->links('pagination::simple-bootstrap-4') !!}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
+        {{-- session stock --}}
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -322,7 +220,7 @@
                                         </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="4" class="text-center">
+                                                <td colspan="3" class="text-center">
                                                     <h3 style="color: #ffb19d">List Stock Harian masih kosong</h3>
                                                 </td>
                                             </tr>
@@ -339,6 +237,7 @@
                 </div>
             </div>
         </div>
+        <!-- /.row -->
     @endrole
 
     @role('gudang')

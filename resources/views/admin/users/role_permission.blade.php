@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Role Permission')
 
 @section('css')
     <style type="text/css">

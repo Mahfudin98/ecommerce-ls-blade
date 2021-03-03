@@ -11,6 +11,7 @@ use App\Models\Customer;
 use App\Models\Province;
 use App\Models\Comment;
 use App\Models\ImageComment;
+use App\Models\NewsPost;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -20,8 +21,9 @@ class GuestController extends Controller
 {
     public function index()
     {
+        $news = NewsPost::where('status', 1)->orderBy('created_at', 'DESC')->paginate(3);
         $products = Product::where('status', 1)->orderBy('created_at', 'DESC')->paginate(8);
-        return view('customer.index', compact('products'));
+        return view('customer.index', compact('products', 'news'));
     }
 
     public function shop()
@@ -200,5 +202,15 @@ class GuestController extends Controller
         $user = auth()->guard('customer')->user();
         $orders = Order::where('ref', $user->id)->where('status', 4)->paginate(10);
         return view('ecommerce.affiliate', compact('orders'));
+    }
+
+    public function newsList()
+    {
+        $news = NewsPost::where('status', 1)->orderBy('created_at', 'DESC');
+        if (request()->q != '') {
+            $news = $news->where('title', 'LIKE', '%' . request()->q . '%');
+        }
+        $news = $news->paginate(10);
+        return view('customer.extract.news', compact('news'));
     }
 }

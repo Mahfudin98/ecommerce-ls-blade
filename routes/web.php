@@ -23,7 +23,6 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', [GuestController::class, 'index'])->name('guest.index');
 Route::get('/shop', [GuestController::class, 'shop'])->name('guest.shop');
 Route::get('/category/{slug}', [GuestController::class, 'categoryProduct'])->name('guest.category');
@@ -41,7 +40,7 @@ Route::get('/checkout/{invoice}', [CartController::class, 'checkoutFinish'])->na
 Route::get('/contact', [ContactController::class, 'contact'])->name('guest.contact');
 Route::post('/contact', [ContactController::class, 'contactPost'])->name('post.contact');
 
-
+Route::get('/news', [GuestController::class, 'newsList'])->name('ls.news');
 Route::group(['prefix' => 'member', 'namespace' => 'Ecommerce'], function() {
     Route::get('login', [LoginController::class, 'loginForm'])->name('customer.login');
     Route::post('/post/login', [LoginController::class, 'login'])->name('customer.post_login');
@@ -83,9 +82,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     /* role super admin */
     Route::group(['middleware' => ['role:superadmin']], function () {
-
-    });
-    Route::resource('superadmin/role', RoleController::class)->except([
+        Route::resource('superadmin/role', RoleController::class)->except([
             'create', 'show', 'edit', 'update'
         ]);
         Route::resource('superadmin/users', UserController::class)->except([
@@ -96,10 +93,17 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/users/permission', [UserController::class, 'addPermission'])->name('users.add_permission');
         Route::get('superadmin/role-permission', [UserController::class, 'rolePermission'])->name('users.roles_permission');
         Route::put('/users/permission/{role}', [UserController::class, 'setRolePermission'])->name('users.setRolePermission');
-    /* end role super admin */
+    });
 
     /* role admin */
     Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('admin/other', [DashboardController::class, 'other'])->name('other');
+        /* route news */
+        Route::get('admin/post/news/{id}', [DashboardController::class, 'newsEdit'])->name('post.edit');
+        Route::post('admin/post/news', [DashboardController::class, 'newsPost'])->name('post.news');
+        Route::put('admin/post/{id}', [DashboardController::class, 'newsUpdate'])->name('post.update');
+        Route::delete('admin/post/delete/{id}', [DashboardController::class, 'newsDelete'])->name('post.delete');
+        /* route cs */
         Route::post('admin/post/cs', [DashboardController::class, 'cspost'])->name('cs.post');
         Route::delete('admin/delete/{id}', [DashboardController::class, 'csdelete'])->name('cs.delete');
         Route::get('admin/dashboard/cs-edit/{id}', [DashboardController::class, 'csedit'])->name('cs.edit');
