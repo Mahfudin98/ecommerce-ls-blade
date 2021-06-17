@@ -41,7 +41,7 @@
                         <div class="ml-40">
                             <strong class="sm-head text-dark">
                                 <span class="fa fa-location-arrow"></span>
-                                PT LAROSSA SUKSESTAM
+                                PT LAROSSA SUKSESTAMA
                             </strong>
                             <p class="text-dark">Blok Mekarmulya, Rt/Rw 01/01, Ds. Tenjolayar, Kec. Cigasong, Kab. Majalengka.</p>
 
