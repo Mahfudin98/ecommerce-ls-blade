@@ -215,8 +215,9 @@ class CartController extends Controller
                 $client->messages->create(
                     '+'.$phone_number,
                     array(
-                        'from' => $twilio_phone,
-                        'body' => 'Code verifikasi anda: '. $active_token .', ini password anda:' . $password,
+                        'from' => '',
+                        'messagingServiceSid' => 'MG1bda3d5469ac73407c1fc1746e4832e7',
+                        'body' => 'Ini password anda untuk Login: '. $password .', Code verifikasi anda: '. $active_token,
                     )
                 );
                 Mail::to($request->email)->send(new CustomerRegisterMail($customer, $password));
